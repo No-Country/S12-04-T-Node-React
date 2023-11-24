@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Ver fuentes */
 
 :root {
@@ -7,8 +11,9 @@
   -moz-osx-font-smoothing: grayscale;
 
   /* Paleta de colores */
-  --color-primary: #3498db;
-  --color-secondary: #e74c3c;
+  --color-red-strong: #BB1B09;
+  --color-red-dark: #8D2607
+  --color-secondary: #0b0a0a;
 
   /* Tamaño predeterminado */
   --font-size-medium: 16px;
