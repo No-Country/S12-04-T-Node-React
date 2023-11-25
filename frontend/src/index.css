@@ -12,7 +12,8 @@
 
   /* Paleta de colores */
   --color-red-strong: #BB1B09;
-  --color-red-dark: #8D2607
+  --color-red-dark: #8D2607;
+  --color-primary: #000FFF;
   --color-secondary: #0b0a0a;
 
   /* Tamaño predeterminado */
@@ -62,8 +63,13 @@ h3 {
   color: var(--color-primary);
 }
 
+
 .cl-secondary {
   color: var(--color-secondary);
+}
+
+.bg-red {
+  background-color: var(--color-red-strong);
 }
 
 .bg-primary {
