@@ -63,8 +63,13 @@ h3 {
   color: var(--color-primary);
 }
 
+
 .cl-secondary {
   color: var(--color-secondary);
+}
+
+.bg-red {
+  background-color: var(--color-red-strong);
 }
 
 .bg-primary {
