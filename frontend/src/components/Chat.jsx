@@ -1,16 +1,14 @@
-import { BsHandThumbsUp, BsHandThumbsDown } from "react-icons/bs";
-import { IoArrowRedoSharp } from "react-icons/io5";
 
 const Chat = () => {
   return (
-    <div className="flex flex-col w-[80rem] gap-10 bg-slate-100">
+    <div className="flex flex-col w-[80rem] sm:w-[60rem] h-screen gap-10 mx-2">
       <div className="chat chat-start">
         <div className="chat-image avatar">
           <div className="w-16 rounded-full">
             <img alt="avatar" src="avatar-chef.png" />
           </div>
         </div>
-        <div className="chat-bubble">
+        <div className="chat-bubble bg-slate-200 text-slate-800">
           Hola, dime que ingredientes tienes!
         </div>
       </div>
@@ -19,11 +17,11 @@ const Chat = () => {
           <div className="w-12 rounded-full">
             <img
               alt="avatar"
-              src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+              src="/avatar.svg"
             />
           </div>
         </div>
-        <div className="chat-bubble chat-bubble-info">
+        <div className="chat-bubble bg-slate-200 text-slate-800">
           Tomate - palta - pollo
         </div>
       </div>
@@ -33,7 +31,7 @@ const Chat = () => {
             <img alt="avatar" src="avatar-chef.png" />
           </div>
         </div>
-        <div className="chat-bubble">
+        <div className="chat-bubble bg-slate-200 text-slate-800">
           Aqui tienes una receta:
           <p>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -43,16 +41,16 @@ const Chat = () => {
           </p>
         </div>
       </div>
-      <div className="flex flex-col ">
-        <h4 className="font-bold text-xl mx-auto mb-4">Te gustó esta receta?</h4>
+      <div className="flex flex-col mb-6">
+        <h4 className="font-bold text-xl mx-auto mb-4">¿Te gustó esta receta?</h4>
         <div className="flex justify-center gap-2 flex-wrap">
-          <button className="btn btn-success px-32 col-12"><BsHandThumbsUp className="text-slate-50 w-6 h-6"/></button>
-          <button className="btn btn-error px-32 col-12"><BsHandThumbsDown className="text-slate-50 w-6 h-6"/></button>
+          <button className="btn bg-slate-500 px-32 col-12 text-slate-50 text-lg">Si</button>
+          <button className="btn bg-slate-500 px-32 col-12 text-slate-50 text-lg">No</button>
         </div>
       </div>
-      <div className="flex gap-2 w-[75%]  mx-auto"> 
-      <input type="text" placeholder="Ingresa tus ingredientes.." className="input input-bordered input-info rounded-2xl w-full" />
-      <button className="btn btn-circle btn-info"><IoArrowRedoSharp  className="w-8 h-8 text-slate-50" /></button>
+      <div className="flex gap-2 w-[90%] sm:w-[60%] mx-4 fixed bottom-8"> 
+      <input type="text" placeholder="Escribe lo que tienes en la heladera" className="input border-2 border-slate-400 rounded-2xl w-full" />
+      <button className="absolute right-2 mt-3 "><img src="/enviar.png" alt="button" /></button>
       </div>
     </div>
   );
