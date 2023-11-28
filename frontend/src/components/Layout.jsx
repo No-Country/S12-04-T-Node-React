@@ -4,11 +4,11 @@ import { Navigation } from './Navigation'
 
 const Layout = () => {
   return (
-    <div>
-      <div>
+    <div className='container-fluid'>
+      <div >
         <Navigation />
       </div>
-      <Outlet />
+      <Outlet  />
       
       {/* ACA PODRIA IR EL FOOTER */}
       

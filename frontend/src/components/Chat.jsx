@@ -3,7 +3,7 @@ import { IoArrowRedoSharp } from "react-icons/io5";
 
 const Chat = () => {
   return (
-    <div className="flex flex-col gap-16 w-[600px]">
+    <div className="flex flex-col w-[80rem] gap-10 bg-slate-100">
       <div className="chat chat-start">
         <div className="chat-image avatar">
           <div className="w-16 rounded-full">
@@ -43,14 +43,14 @@ const Chat = () => {
           </p>
         </div>
       </div>
-      <div className="flex flex-col mx-auto">
-        <h4 className="font-bold text-xl mx-auto">Te gustó esta receta?</h4>
-        <div className="flex mx-auto mt-8 gap-8">
-          <button className="btn btn-success px-32"><BsHandThumbsUp className="text-slate-50 w-6 h-6"/></button>
-          <button className="btn btn-error px-32"><BsHandThumbsDown className="text-slate-50 w-6 h-6"/></button>
+      <div className="flex flex-col ">
+        <h4 className="font-bold text-xl mx-auto mb-4">Te gustó esta receta?</h4>
+        <div className="flex justify-center gap-2 flex-wrap">
+          <button className="btn btn-success px-32 col-12"><BsHandThumbsUp className="text-slate-50 w-6 h-6"/></button>
+          <button className="btn btn-error px-32 col-12"><BsHandThumbsDown className="text-slate-50 w-6 h-6"/></button>
         </div>
       </div>
-      <div className="flex gap-2"> 
+      <div className="flex gap-2 w-[75%]  mx-auto"> 
       <input type="text" placeholder="Ingresa tus ingredientes.." className="input input-bordered input-info rounded-2xl w-full" />
       <button className="btn btn-circle btn-info"><IoArrowRedoSharp  className="w-8 h-8 text-slate-50" /></button>
       </div>
