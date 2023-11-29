@@ -12,7 +12,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-    errorElement: <NotFound/>,
+    errorElement: <NotFound />,
     children: [
       {
         path: "/",
@@ -32,8 +32,12 @@ export const router = createBrowserRouter([
       },
       {
         path: "/recipe",
-        element: <Recipe />
-      }
+        element: <Recipe />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
     ],
   },
 ]);
