@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const Chat = () => {
@@ -57,9 +58,9 @@ const Chat = () => {
               ¿Te gustó esta receta?
             </h4>
             <div className="flex justify-center gap-2 flex-wrap">
-              <button className="btn btn-outline border-red-800 border-2 hover:bg-slate-800 hover:border-slate-50 w-[40%] px-32 col-12 text-xl">
+              <Link to="/recipe" className="btn btn-outline border-red-800 border-2 hover:bg-slate-800 hover:border-slate-50 w-[40%] px-32 col-12 text-xl">
                 Si
-              </button>
+              </Link>
               <button className="btn bg-red-800 hover:bg-slate-800 px-32 col-12 w-[40%] text-slate-50 text-xl">
                 No
               </button>
