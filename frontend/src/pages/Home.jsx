@@ -6,22 +6,21 @@ const Home = () => {
   return (
     <>
       <div
-        className="bg-cover bg-center h-screen flex items-center justify-center relative"
+        className={`bg-cover bg-center h-screen flex flex-col items-center justify-center relative p-4 `}
         style={{
           backgroundImage,
-          height: "calc(100vh - 80px)", // Calcula la altura restando 80px
         }}
       >
         {/* Contenedor con blur */}
-        <Link to="chat">
-          <div className="bg-opacity-25 backdrop-filter p--0 backdrop-blur-md p-8  text-white text-center border-4 rounded-3xl">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold">
-              Conversa con el chef!
-            </h1>
-            <p className="mt-2 text-left text-base sm:text-lg md:text-xl lg:text-2xl">
-              Cocina con lo tengas en el momento
-            </p>
-          </div>
+        <div className="bg-opacity-25 backdrop-filter p--0 backdrop-blur-md px-5 text-[1.632rem]  text-white text-center  rounded-[1rem] bg-gray-950">
+          <h1 className=" sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold">
+            Conversa con el chef!
+          </h1>
+        </div>
+        <Link to="chat" className="shadow-cyan-500/50 ">
+          <p className="mt-2 text-center text-white bg-red-900 text-base text-[0.7rem] sm:text-lg md:text-xl lg:text-2xl px-2 rounded-full font-[500]">
+            Cocina con lo tengas en el momento
+          </p>
         </Link>
       </div>
     </>
