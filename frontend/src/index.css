@@ -11,17 +11,17 @@
   -moz-osx-font-smoothing: grayscale;
 
   /* Paleta de colores */
-  --color-red-strong: #BB1B09;
-  --color-red-dark: #8D2607;
-  --color-primary: #000FFF;
+  --color-red-strong: #bb1b09;
+  --color-red-dark: #8d2607;
+  --color-primary: #000fff;
   --color-secondary: #0b0a0a;
 
   /* Tamaño predeterminado */
   --font-size-medium: 16px;
 
   /* Fuentes ejemplo */
-  --font-primary: "Montserrat", cursive;
-  --font-secondary: "Open Sans", sans-serif;
+  --font-primary: "Itim", cursive;
+  --font-secondary: "Montserrat", sans-serif;
   --font-script: "Dancing Script", cursive;
 
   /* Altura de líneas  y grosor de letra */
@@ -58,11 +58,14 @@ h3 {
   font-family: var(--font-primary);
 }
 
+h4 {
+  font-family: var(--font-secondary);
+}
+
 /* Custom Class */
 .cl-primary {
   color: var(--color-primary);
 }
-
 
 .cl-secondary {
   color: var(--color-secondary);
