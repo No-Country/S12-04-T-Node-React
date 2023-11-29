@@ -1,15 +1,15 @@
 
 const Chat = () => {
   return (
-    <div className="flex flex-col w-[80rem] sm:w-[60rem] h-screen gap-10 mx-2">
+    <div className="flex flex-col w-[80rem] sm:w-[60rem] h-screen gap-10 mx-2 font-medium text-lg">
       <div className="chat chat-start">
         <div className="chat-image avatar">
           <div className="w-16 rounded-full">
             <img alt="avatar" src="avatar-chef.png" />
           </div>
         </div>
-        <div className="chat-bubble bg-slate-200 text-slate-800">
-          Hola, dime que ingredientes tienes!
+        <div className="chat-bubble bg-[#F9E9E7] text-slate-800">
+          <p>Hola, dime que ingredientes tienes!</p>
         </div>
       </div>
       <div className="chat chat-end">
@@ -21,8 +21,8 @@ const Chat = () => {
             />
           </div>
         </div>
-        <div className="chat-bubble bg-slate-200 text-slate-800">
-          Tomate - palta - pollo
+        <div className="chat-bubble bg-[#F9E9E7] text-slate-800">
+          <p>Tomate, aceite, papa y lechuga</p>
         </div>
       </div>
       <div className="chat chat-start">
@@ -31,8 +31,9 @@ const Chat = () => {
             <img alt="avatar" src="avatar-chef.png" />
           </div>
         </div>
-        <div className="chat-bubble bg-slate-200 text-slate-800">
-          Aqui tienes una receta:
+        <div className="chat-bubble bg-[#F9E9E7] text-slate-800">
+         <p> Aqui tienes una receta:</p>
+         <br />
           <p>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit.
             Repellendus quisquam eius consequuntur odio repudiandae corrupti at
@@ -41,11 +42,11 @@ const Chat = () => {
           </p>
         </div>
       </div>
-      <div className="flex flex-col mb-6">
-        <h4 className="font-bold text-xl mx-auto mb-4">¿Te gustó esta receta?</h4>
+      <div className="flex flex-col gap-16 my-6">
+        <h4 className="font-bold text-2xl mx-auto">¿Te gustó esta receta?</h4>
         <div className="flex justify-center gap-2 flex-wrap">
-          <button className="btn bg-slate-500 px-32 col-12 text-slate-50 text-lg">Si</button>
-          <button className="btn bg-slate-500 px-32 col-12 text-slate-50 text-lg">No</button>
+          <button className="btn btn-outline border-red-800 border-2 hover:bg-slate-800 hover:border-slate-50 w-[40%] px-32 col-12 text-xl">Si</button>
+          <button className="btn bg-red-800 hover:bg-slate-800 px-32 col-12 w-[40%] text-slate-50 text-xl">No</button>
         </div>
       </div>
       <div className="flex gap-2 w-[90%] sm:w-[60%] mx-4 fixed bottom-8"> 
