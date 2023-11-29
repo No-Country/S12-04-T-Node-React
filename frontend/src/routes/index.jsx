@@ -6,6 +6,7 @@ import Register from "../pages/Register";
 import ChatBot from "../pages/ChatBot";
 import Layout from "../components/Layout";
 import NotFound from "../pages/NotFound";
+import Recipe from "../pages/Recipe";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
         path: "/chat",
         element: <ChatBot />,
       },
+      {
+        path: "/recipe",
+        element: <Recipe />
+      }
     ],
   },
 ]);

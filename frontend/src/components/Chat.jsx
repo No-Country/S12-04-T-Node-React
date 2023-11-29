@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 const Chat = () => {
   return (
@@ -44,7 +45,7 @@ const Chat = () => {
       <div className="flex flex-col mb-6">
         <h4 className="font-bold text-xl mx-auto mb-4">¿Te gustó esta receta?</h4>
         <div className="flex justify-center gap-2 flex-wrap">
-          <button className="btn bg-slate-500 px-32 col-12 text-slate-50 text-lg">Si</button>
+          <Link to="/recipe" className="btn bg-slate-500 px-32 col-12 text-slate-50 text-lg">Si</Link>
           <button className="btn bg-slate-500 px-32 col-12 text-slate-50 text-lg">No</button>
         </div>
       </div>
