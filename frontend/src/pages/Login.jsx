@@ -29,7 +29,7 @@ const Login = () => {
   }
   return (
     <>  
-      <img src={img} alt="img" className="w-[10rem] mx-auto pt-4"/>
+      <img src={img} alt="img" className="w-[10rem] mx-auto pt-4 mt-16"/>
       <h1 className="text-7xl font-normal text-center my-4">BIENVENIDO</h1>
       <h3 className='text-center text-3xl font-bold my-4' style={{fontFamily: 'SF Pro Display'}}>Iniciar Sesion</h3>
       <form action="" onSubmit={handleData} className="flex flex-col sm:w-1/2  justify-around p-4 mx-auto ">
