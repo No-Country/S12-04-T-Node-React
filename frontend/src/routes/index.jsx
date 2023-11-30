@@ -1,5 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-// Rutas del front
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
@@ -7,20 +6,17 @@ import ChatBot from "../pages/ChatBot";
 import Layout from "../components/Layout";
 import NotFound from "../pages/NotFound";
 import Recipe from "../pages/Recipe";
+import LayoutAuth from "../components/LayoutAuth";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-    errorElement: <NotFound/>,
+    errorElement: <NotFound />,
     children: [
       {
         path: "/",
         element: <Home />,
-      },
-      {
-        path: "/login",
-        element: <Login />,
       },
       {
         path: "/signup",
@@ -32,8 +28,23 @@ export const router = createBrowserRouter([
       },
       {
         path: "/recipe",
-        element: <Recipe />
-      }
+        element: <Recipe />,
+      },
+    ],
+  },
+  {
+    path: "/auth/*",
+    element: <LayoutAuth />,
+    errorElement: <NotFound />,
+    children: [
+      {
+        index: true,
+        element: <Login />,
+      },
+      {
+        path: "register", // Usando ruta relativa
+        element: <Register />,
+      },
     ],
   },
 ]);
