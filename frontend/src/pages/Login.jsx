@@ -30,13 +30,13 @@ const Login = () => {
   return (
     <>  
       <img src={img} alt="img" className="w-[10rem] mx-auto pt-4"/>
-      <h1 className="text-7xl font-normal text-center my-4">Bienvenido</h1>
+      <h1 className="text-7xl font-normal text-center my-4">BIENVENIDO</h1>
       <h3 className='text-center text-3xl font-bold my-4' style={{fontFamily: 'SF Pro Display'}}>Iniciar Sesion</h3>
       <form action="" onSubmit={handleData} className="flex flex-col sm:w-1/2  justify-around p-4 mx-auto ">
         
         <input 
         style={{backgroundColor: 'rgba(118, 120, 118, 0.46)', borderRadius: '10px'}}
-        className='min-w-[12rem] ps-2 text-2xl py-2 mb-4 placeholder:bolder placeholder:text-black placeholder:text-900'
+        className='min-w-[12rem] ps-2 text-2xl py-6 mb-4 placeholder:bolder placeholder:text-black placeholder:text-900'
         type="text" 
         placeholder="Usuario..."
         name="username"
@@ -49,7 +49,7 @@ const Login = () => {
         <input 
         style={{backgroundColor: 'rgba(118, 120, 118, 0.46)',
         borderRadius: '10px'}}
-        className='min-w-[12rem] ps-2 text-2xl py-2 mt-4 placeholder:bolder placeholder:text-black placeholder:text-900 '
+        className='min-w-[12rem] ps-2 text-2xl py-6 mt-4 placeholder:bolder placeholder:text-black placeholder:text-900 '
         type="password" 
         name="password"
         placeholder='Contraseña...'
