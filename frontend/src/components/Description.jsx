@@ -1,8 +1,8 @@
 
 const Description = () => {
   return (
-    <div className="flex flex-col h-screen gap-4 items-center m-12">
-    <img className="w-[60%] h-[50%] shadow-lg shadow-slate-800 rounded-2xl" src="/plato.png" alt="plato" />
+    <div className="flex flex-col h-screen gap-4 items-center sm:m-12">
+    <img className="sm:w-[60%] sm:h-[50%] shadow-lg shadow-slate-800 sm:rounded-2xl" src="/plato.png" alt="plato" />
     <div className="flex flex-col gap-4 w-[60%]">
       <h1 className="text-2xl font-bold">Nombre del Plato</h1>
       <h4 className="font-semibold">Descripción</h4>
