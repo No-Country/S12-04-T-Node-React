@@ -1,19 +1,13 @@
-import { Outlet, useLocation } from 'react-router-dom'
-import { Navigation } from './Navigation'
-import NavbarResponsive from './NavbarResponsive';
-
-
+import { Outlet, useLocation } from "react-router-dom";
+import { Navigation } from "./Navigation";
+import NavbarResponsive from "./NavbarResponsive";
 
 const Layout = () => {
   const location = useLocation();
 
   return (
     <div className="container-fluid relative">
-      {location.pathname === "/" ? (
-        <NavbarResponsive />
-      ) : (
-        <Navigation />
-      )}
+      {location.pathname === "/" ? <NavbarResponsive /> : <Navigation />}
       <Outlet />
 
       {/* ACA PODRIA IR EL FOOTER */}
@@ -23,6 +17,6 @@ const Layout = () => {
           </div> */}
     </div>
   );
-}
+};
 
-export default Layout
+export default Layout;
