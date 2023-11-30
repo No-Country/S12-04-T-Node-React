@@ -6,10 +6,8 @@ import { Link } from "react-router-dom";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 
 /* Importaciones de imágenes */
-import hatLogo from "../assets/images/hat-logo.svg"
+import hatLogo from "../assets/images/hat-logo.svg";
 import userLogo from "../assets/images/user-logo.svg";
-
-
 
 /* Clases dinámicas perfil usuario */
 function classNames(...classes) {
@@ -18,10 +16,12 @@ function classNames(...classes) {
 
 /* ||| COMPONENTE NAVBAR ||| */
 export const Navigation = () => {
-
   /* || JSX || */
   return (
-    <Disclosure as="nav" className="bg-slate-700">
+    <Disclosure
+      as="nav"
+      className="bg-red-900 fixed z-10 top-0 w-full shadow-md shadow-slate-500/50"
+    >
       {() => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 ">

@@ -13,7 +13,7 @@ const Chat = () => {
   };
 
   return (
-    <div className="flex flex-col w-[80rem] sm:w-[60rem] h-screen gap-10 mx-2 font-medium text-lg">
+    <div className="flex flex-col w-[80rem] sm:w-[60rem] h-screen gap-10 mx-2 mt-12 font-medium text-lg">
       <div className="chat chat-start">
         <div className="chat-image avatar">
           <div className="w-16 rounded-full">
