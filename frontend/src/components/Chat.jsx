@@ -3,13 +3,11 @@ import { useState } from "react";
 
 const Chat = () => {
   const [message, setMessage] = useState("");
-  const [res, setRes] = useState("");
-  console.log(message);
-  console.log(res);
+  const [ingredients, setIngredients] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setRes(message);
+    setIngredients(message);
   };
 
   return (
@@ -24,7 +22,7 @@ const Chat = () => {
           <p>Hola, dime que ingredientes tienes!</p>
         </div>
       </div>
-      {res && (
+      {ingredients && (
         <div className="flex flex-col">
           <div className="chat chat-end">
             <div className="chat-image avatar">
@@ -33,7 +31,7 @@ const Chat = () => {
               </div>
             </div>
             <div className="chat-bubble bg-[#F9E9E7] text-slate-800">
-              <p>{res}</p>
+              <p>{ingredients}</p>
             </div>
           </div>
           <div className="chat chat-start">
@@ -58,7 +56,10 @@ const Chat = () => {
               ¿Te gustó esta receta?
             </h4>
             <div className="flex justify-center gap-2 flex-wrap">
-              <Link to="/recipe" className="btn btn-outline border-red-800 border-2 hover:bg-slate-800 hover:border-slate-50 w-[40%] px-32 col-12 text-xl">
+              <Link
+                to="/recipe"
+                className="btn btn-outline border-red-800 border-2 hover:bg-slate-800 hover:border-slate-50 w-[40%] px-32 col-12 text-xl"
+              >
                 Si
               </Link>
               <button className="btn bg-red-800 hover:bg-slate-800 px-32 col-12 w-[40%] text-slate-50 text-xl">
@@ -68,7 +69,11 @@ const Chat = () => {
           </div>
         </div>
       )}
-        <form onSubmit={handleSubmit} className="flex gap-2 w-[90%] sm:w-[60%] mx-4 fixed bottom-8">
+      {!ingredients ? (
+        <form
+          onSubmit={handleSubmit}
+          className="flex gap-2 w-[90%] sm:w-[60%] mx-4 fixed bottom-8"
+        >
           <input
             onChange={(e) => {
               setMessage(e.target.value);
@@ -81,7 +86,10 @@ const Chat = () => {
             <img src="/enviar.png" alt="button" />
           </button>
         </form>
-      </div>
+      ) : (
+        ""
+      )}
+    </div>
   );
 };
 
