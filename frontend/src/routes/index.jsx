@@ -7,6 +7,7 @@ import Layout from "../components/Layout";
 import NotFound from "../pages/NotFound";
 import Recipe from "../pages/Recipe";
 import LayoutAuth from "../components/LayoutAuth";
+import Favorites from "../pages/Favorites";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
       {
         path: "/recipe",
         element: <Recipe />,
+      },
+      {
+        path: "/favorites",
+        element: <Favorites />,
       },
     ],
   },

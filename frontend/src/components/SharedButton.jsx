@@ -1,21 +1,20 @@
-import { MdOutlineWhatsapp } from "react-icons/md";
-import {useNavigate} from 'react-router-dom'
+import { IoShareSocialSharp } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
-const SharedButton = ({ phone, text }) => {
-
-const navigate = useNavigate();
+const SharedButton = ({ text }) => {
+  const navigate = useNavigate();
 
   const handleClick = () => {
     const encoded = encodeURIComponent(text);
-    const url = `https://wa.me/${phone}?text=${encoded}`;
-    window.open(url, '_blank');
-    navigate("/")
+    const url = `https://wa.me/?text=${encoded}`;
+    window.open(url, "_blank");
+    navigate("/");
   };
 
   return (
-    <button className="btn btn-success rounded-full text-slate-50 absolute right-0" onClick={handleClick}>
-      <MdOutlineWhatsapp className="w-8 h-8"/>
+    <button onClick={handleClick}>
+      <IoShareSocialSharp className="w-8 h-8" />
     </button>
   );
 };
