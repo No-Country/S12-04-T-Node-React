@@ -1,11 +1,17 @@
 import { MdOutlineWhatsapp } from "react-icons/md";
+import {useNavigate, useHistory} from 'react-router-dom'
 
 // eslint-disable-next-line react/prop-types
 const SharedButton = ({ phone, text }) => {
+
+const navigate = useNavigate();
+const history = useHistory();
+
   const handleClick = () => {
     const encoded = encodeURIComponent(text);
     const url = `https://wa.me/${phone}?text=${encoded}`;
-    window.open(url, "_blank");
+    history.push(url);
+    navigate("/")
   };
 
   return (
