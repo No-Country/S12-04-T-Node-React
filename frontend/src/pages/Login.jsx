@@ -62,13 +62,13 @@ const Login = () => {
         onChange={(e) => setDataUser({ ...dataUser, username: e.target.value })} 
         
         autoFocus       />
-        <small className='text-red-600 mt-2 ms-4'>{validate().username}</small>
+        <small className='text-red-600 mt-2 ms-4 sm:ms-8'>{validate().username}</small>
 
         
 
         <input 
         style={{backgroundColor: 'rgba(118, 120, 118, 0.46)'}}
-        className='w-11/12 mx-auto ps-2 text-xl py-2 mt-3 placeholder:bolder placeholder:text-black placeholder:text-900'
+        className='w-11/12 mx-auto ps-2 text-xl py-2 mt-3  placeholder:bolder placeholder:text-black placeholder:text-900'
         type="password" 
         name="password"
         placeholder='Contraseña...'
@@ -76,11 +76,11 @@ const Login = () => {
         
         onChange={(e) => setDataUser({ ...dataUser, password: e.target.value })}
         />
-        <small className='text-red-600 mt-2 ms-4'> {validate().password}</small>
-        <Link to="/" className="text-xl font-bold mt-2" style={{fontFamily: 'SF Pro Display'}}>¿Has olvidado la contraseña?</Link>
+        <small className='text-red-600 mt-2 ms-4 sm:ms-8'> {validate().password}</small>
+        <Link to="/" className="text-xl font-bold mt-2 ms-4 sm:ms-8" style={{fontFamily: 'SF Pro Display'}}>¿Has olvidado la contraseña?</Link>
 
         
-        <Link to="/auth/register" className=" btn btn-outline my-5 text-dark-900 font-bold border-amber-900 tracking-wider rounde" style={{
+        <Link to="/auth/register" className="ms-4 sm:ms-8  btn btn-outline my-5 text-dark-900 font-bold border-amber-900 tracking-wider rounde me-4 sm:me-6" style={{
         borderRadius: '10px'}}>Registrate</Link>
 
 
@@ -88,7 +88,7 @@ const Login = () => {
 
         <button 
         type="submit" 
-        className="btn btn-amber-900 hover:bg-[#17f36b] text-white  tracking-wider py-5 px-4 rounded"
+        className="btn btn-amber-900 hover:bg-[#17f36b] text-white  tracking-wider py-5 px-4 rounded ms-4 sm:ms-8 me-4 sm:me-6"
         style={{backgroundColor: '#8D2607',
         borderRadius: '10px'}}>
           Iniciar Sesion</button>
