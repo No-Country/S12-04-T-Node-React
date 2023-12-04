@@ -21,11 +21,12 @@ const Description = () => {
         <h4 className="font-semibold">Instrucciones</h4>
         <p>{response.instructions}</p>
       </div>
-      <div className="flex justify-between gap-8 my-8 sm:ml-[600px]">
-        <Link to="/favorites">
-          <FaHeart className="w-6 h-6 text-red-600" />
-        </Link>
+      <div className="flex sm:gap-8 my-8">
         <SharedButton text={response.title + ':' + response.instructions} />
+        <Link to="/favorites" className="btn sm:btn-wide bg-red-600 text-lg  text-slate-50">
+          Favoritos
+          <FaHeart className="w-6 h-6" />
+        </Link>
       </div>
     </div>
   );
