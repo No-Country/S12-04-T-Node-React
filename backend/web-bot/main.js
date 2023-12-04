@@ -17,11 +17,11 @@ if (currentVersion < requiredVersion) {
 
 // Start Express app
 const app = express();
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 // Init client
 const client = new OpenAI({
-    key: OPENAI_API_KEY,
+    key: process.env.OPENAI_API_KEY,
 });
 
 // Create new assistant or load existing
