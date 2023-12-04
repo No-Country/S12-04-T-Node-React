@@ -8,6 +8,7 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 /* Importaciones de imágenes */
 import hatLogo from "../assets/images/hat-logo.svg";
 import userLogo from "../assets/images/user-logo.svg";
+import userProphile from "../assets/images/profile-exam.svg"
 
 /* Clases dinámicas perfil usuario */
 function classNames(...classes) {
@@ -45,11 +46,27 @@ export const Navigation = () => {
                 <Menu as="div" className="relative ml-3">
                   <div>
                     <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                      <Link to="/auth">
+                        <span className="absolute -inset-1.5" />
+                        <span className="sr-only">Open user menu</span>
+                        <img
+                          className="h-10 w-10 rounded-full"
+                          src={userLogo}
+                          alt=""
+                        />
+                      </Link>
+                    </Menu.Button>
+                  </div>
+                </Menu>
+                {/* Usuario conectado */}
+                <Menu as="div" className="relative ml-3">
+                  <div>
+                    <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-10 w-10 rounded-full"
-                        src={userLogo}
+                        src={userProphile}
                         alt=""
                       />
                     </Menu.Button>

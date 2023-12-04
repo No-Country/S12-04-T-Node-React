@@ -1,27 +1,35 @@
+import SharedButton from "./SharedButton";
+import { FaHeart } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import response from "../mockup/response.json";
 
 const Description = () => {
-  return (
-    <div className="flex flex-col h-screen gap-4 items-center sm:m-12">
-    <img className="sm:w-[60%] sm:h-[50%] shadow-lg shadow-slate-800 sm:rounded-2xl mt-16 sm:mt-12" src="/plato.png" alt="plato" />
-    <div className="flex flex-col gap-4 w-[60%]">
-      <h1 className="text-2xl font-bold">Nombre del Plato</h1>
-      <h4 className="font-semibold">Descripción</h4>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
-        doloremque, animi id perspiciatis est eligendi sunt omnis fuga vel
-        aperiam ratione. Qui velit earum debitis.
-      </p>
-      <h4 className="font-semibold">Ingredientes:</h4>
-      <div>
-        Tomate-Papas-Lechuga
-      </div>
-      <h4 className="font-semibold">Instrucciones</h4>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit, consequatur numquam? Dolore inventore incidunt nam. Tenetur, ad earum. Mollitia perspiciatis quos eos consequuntur blanditiis similique ipsam molestias possimus inventore ipsa quia minus magnam numquam quisquam, ex natus enim nisi architecto.</p>
-      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus totam reiciendis hic perspiciatis beatae quam delectus quidem! Architecto molestiae, minima fuga consectetur quis aliquid amet tenetur ipsam tempore a! Unde animi perspiciatis corporis explicabo tempora illum consequuntur nisi alias sapiente.</p>
-    </div>
-  </div>
-   
-  )
-}
 
-export default Description
+  return (
+    <div className="flex flex-col gap-4 items-center sm:m-12 bg-[#F8FAFA]">
+      <img
+        className="w-[50%] sm:w-[15%] mt-16 sm:mt-8"
+        src="/chefGpt.gif"
+        alt="plato"
+      />
+      <div className="flex flex-col gap-4 w-[60%] sm:shadow-2xl sm:shadow-slate-600 sm:rounded-2xl  sm:p-8">
+        <h1 className="text-2xl font-bold">{response.title}</h1>
+        <h4 className="font-semibold">Descripción</h4>
+        <p>{response.description}</p>
+        <h4 className="font-semibold">Ingredientes:</h4>
+        <p>{response.ingredients}</p>
+        <h4 className="font-semibold">Instrucciones</h4>
+        <p>{response.instructions}</p>
+      </div>
+      <div className="flex sm:gap-8 my-8">
+        <SharedButton text={response.title + ':' + response.instructions} />
+        <Link to="/favorites" className="btn sm:btn-wide bg-red-600 text-lg  text-slate-50">
+          Favoritos
+          <FaHeart className="w-6 h-6" />
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+export default Description;
