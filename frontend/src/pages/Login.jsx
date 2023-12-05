@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import img from '../assets/images/Group8.svg';
-import { Link } from 'react-router-dom';
+import { Link, useAsyncValue } from 'react-router-dom';
 
 
 const initialValues = {
-  username: '',
+  email: '',
   password: '',
 }
 
@@ -18,13 +18,13 @@ const Login = () => {
   const validate = () => {
     let errorsList = {};
 
-    if (!dataUser.username)
-      errorsList = { ...errorsList, username: "Campo obligatorio." };
-    else if (dataUser.username.length < 4 || dataUser.username.length > 8)
-      errorsList = {
-        ...errorsList,
-        username: "Debe tener como minimo 4 caracteres y 8 maximo.",
-      };
+    if (!dataUser.email)
+      errorsList = { ...errorsList, email: "Campo obligatorio." };
+    // else if (dataUser.username.length < 4 || dataUser.username.length > 8)
+    //   errorsList = {
+    //     ...errorsList,
+    //     username: "Debe tener como minimo 4 caracteres y 8 maximo.",
+    //   };
       if(!dataUser.password)
       errorsList = { ...errorsList, password: "Campo obligatorio." };
       else if(dataUser.password.length < 4 || dataUser.password.length > 8)
@@ -35,14 +35,31 @@ const Login = () => {
 
     return errorsList;
   };
-  const handleData = (e) => {
+  const handleData = async (e) => {
     e.preventDefault();
+    console.log(dataUser);
     if(Object.keys(validate()).length === 0){
-      console.log(dataUser);
+      await fetch('https://chefgtp.onrender.com/api/auth',{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dataUser)
+      })
+      .then(response => response.json())
+      .then(response => {
+        localStorage.setItem('loginData', JSON.stringify(response.data))
+        
+        console.log(response)})
+      .catch(error => console.log(error))   
+      .finally(() => {
+        console.log('Finalizado');
+      })
     }else{
       alert('Verifique los Campos')
     }
-  }
+  };
+  
   return (
     <>  
     <div className=' h-screen flex-col items-center justify-center py-5'  >
@@ -56,13 +73,13 @@ const Login = () => {
         style={{backgroundColor: 'rgba(118, 120, 118, 0.46)'}}
         className='w-11/12 mx-auto border ps-2 text-xl py-2  placeholder:bolder placeholder:text-black placeholder:text-900'
         type="text" 
-        placeholder="Usuario"
-        name="username"
+        placeholder="Email"
+        name="email"
         value={dataUser.email}
-        onChange={(e) => setDataUser({ ...dataUser, username: e.target.value })} 
+        onChange={(e) => setDataUser({ ...dataUser, email: e.target.value })} 
         
         autoFocus       />
-        <small className='text-red-600 mt-2 ms-4 sm:ms-8'>{validate().username}</small>
+        <small className='text-red-600 mt-2 ms-4 sm:ms-8'>{validate().email}</small>
 
         
 
