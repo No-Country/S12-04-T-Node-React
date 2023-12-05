@@ -1,4 +1,4 @@
-// import { useState } from "react";
+import { Link } from "react-router-dom";
 import Group8 from "../assets/images/Group8.svg";
 const Register = () => {
   // const {user,SetUser} = useState({})
@@ -9,87 +9,72 @@ const Register = () => {
     <>
       <form
         onSubmit={sendUser}
-        className="flex flex-col mt-16  justify-center items-center "
+        className="flex flex-col mt-8  justify-center items-center "
       >
-        <img src={Group8} alt="logo" className="mt-4" />
-        <div className="flex gap-8 justify-center items-center">
-          <div className="flex flex-col justify-center items-center">
-            {/* Nombre */}
-            <label className="form-control w-full max-w-xs ml-4 mt-4">
-              <div className="label">
-                <span className="label-text">Nombre</span>
-              </div>
-              <input
-                type="text"
-                placeholder="Jhon"
-                className="input  input-bordered bg-[#76787675] w-full max-w-xs "
-              />
-            </label>
-            {/* Apellido */}
-            <label className="form-control w-full max-w-xs ml-4 mt-4">
-              <div className="label">
-                <span className="label-text">Apellido</span>
-              </div>
-              <input
-                type="text"
-                placeholder="Doe"
-                className="input bg-[#76787675] input-bordered w-full max-w-xs "
-              />
-            </label>
-            {/* Correo Electronico */}
-            <label className="form-control w-full max-w-xs ml-4 mt-4">
-              <div className="label">
-                <span className="label-text">Correo Electronico</span>
-              </div>
-              <input
-                type="text"
-                placeholder="Jhon_Doe@gmail.com"
-                className="input bg-[#76787675] input-bordered w-full max-w-xs "
-              />
-            </label>
+        <img src={Group8} alt="logo" className="w-[11rem] mx-auto " />
+        <h1 className="text-4xl mt-4">BIENVENIDO</h1>
+        <div className="flex flex-col w-2/5 p-4  gap-5 justify-center items-center scale-90">
+          <div className="flex items-center gap-8 w-full hover:cursor-pointer">
+            <img src="/imageInsert.png" alt="image" className="object-cover" />
+            <h2 className="text-2xl">+ Elige tu foto de perfil</h2>
           </div>
-          <div className="flex flex-col justify-center items-center">
-            {/* Telefono */}
-            <label className="form-control w-full max-w-xs ml-4 mt-4">
-              <div className="label">
-                <span className="label-text">Telefono</span>
-              </div>
-              <input
-                type="text"
-                placeholder="+000 00000000"
-                className="input bg-[#76787675] input-bordered w-full max-w-xs "
-              />
-            </label>
-            {/* Contraseña */}
-            <label className="form-control w-full max-w-xs ml-4 mt-4">
-              <div className="label">
-                <span className="label-text">Contraseña</span>
-              </div>
-              <input
-                type="text"
-                placeholder="**********"
-                className="input bg-[#76787675] input-bordered w-full max-w-xs "
-              />
-            </label>
-            {/* Confirmar contraseña */}
-            <label className="form-control w-full max-w-xs ml-4 mt-4">
-              <div className="label">
-                <span className="label-text">Confirmar contraseña</span>
-              </div>
-              <input
-                type="text"
-                placeholder="**********"
-                className="input bg-[#76787675] input-bordered w-full max-w-xs "
-              />
-            </label>
+          <input
+            style={{ backgroundColor: "rgba(118, 120, 118, 0.46)" }}
+            className="bg-[#E0E0E0] border-4 rounded-lg border-[#858585] w-full mx-auto  ps-2 text-lg py-2  placeholder:bolder placeholder:text-black placeholder:text-900"
+            type="text"
+            placeholder=" Nombre de usuario"
+            name="username"
+            // value={dataUser.email}
+            // onChange={(e) => setDataUser({ ...dataUser, username: e.target.value })}
+
+            autoFocus
+          />
+          <input
+            style={{ backgroundColor: "rgba(118, 120, 118, 0.46)" }}
+            className="bg-[#E0E0E0] border-4 rounded-lg border-[#858585] w-full mx-auto  ps-2 text-lg py-2  placeholder:bolder placeholder:text-black placeholder:text-900"
+            type="text"
+            placeholder="Mail"
+            name="username"
+            // value={dataUser.email}
+            // onChange={(e) => setDataUser({ ...dataUser, username: e.target.value })}
+
+            autoFocus
+          />
+          <input
+            style={{ backgroundColor: "rgba(118, 120, 118, 0.46)" }}
+            className="bg-[#E0E0E0] border-4 rounded-lg border-[#858585] w-full mx-auto  ps-2 text-lg py-2  placeholder:bolder placeholder:text-black placeholder:text-900"
+            type="text"
+            placeholder="Contraseña"
+            name="username"
+            // value={}
+            // onChange={(e) => setDataUser({ ...dataUser, username: e.target.value })}
+
+            autoFocus
+          />
+          <input
+            style={{ backgroundColor: "rgba(118, 120, 118, 0.46)" }}
+            className="bg-[#E0E0E0] border-4 rounded-lg border-[#858585] w-full mx-auto  ps-2 text-lg py-2  placeholder:bolder placeholder:text-black placeholder:text-900"
+            type="text"
+            placeholder="Confirmar Contraseña"
+            name="username"
+            // value={dataUser.email}
+            // onChange={(e) => setDataUser({ ...dataUser, username: e.target.value })}
+
+            autoFocus
+          />
+          <div className="w-full flex flex-col items-center gap-2">
+            <button
+              className="w-full text-xl p-4 mt-4 bg-[#8C1407] rounded-full text-white"
+              onSubmit={sendUser}
+            >
+              Registrarse
+            </button>
+            <h3>¿Ya tienes un usuario? </h3>
+            <Link to="/auth" className="underline text-lg">
+              <h3>Iniciar sesión</h3>
+            </Link>
           </div>
         </div>
-        <button
-          className="w-64 p-4 mt-4 bg-red-800 rounded-full text-white"
-          onSubmit={sendUser}
-        >
-          Enviar
-        </button>
       </form>
     </>
   );
