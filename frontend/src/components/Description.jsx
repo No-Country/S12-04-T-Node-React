@@ -6,9 +6,9 @@ import response from "../mockup/response.json";
 const Description = () => {
 
   return (
-    <div className="flex flex-col gap-4 items-center sm:m-12 bg-[#F8FAFA]">
+    <div className="flex flex-col gap-4 items-center bg-[#F8FAFA]">
       <img
-        className="w-[50%] sm:w-[15%] mt-16 sm:mt-8"
+        className="w-[50%] sm:w-[15%] mt-24 sm:mt-20"
         src="/chefGpt.gif"
         alt="plato"
       />
