@@ -6,6 +6,7 @@ const { generateToken } = require('../utils/jwt')
 async function loginUser(req, res) {
   const result = matchedData(req)
   const { email, password } = result
+
   const emailParsed = email.toLowerCase()
 
   try {
@@ -27,7 +28,13 @@ async function loginUser(req, res) {
     const token = await generateToken(user.uid)
 
     return res.status(200).json({
-      data: { firstname: user.firstname, lastname: user.lastname, token }
+      data: {
+        uid: user.uid,
+        username: user.username,
+        // firstname: user.firstname,
+        // lastname: user.lastname,
+        token
+      }
     })
   } catch (error) {
     console.log(error)

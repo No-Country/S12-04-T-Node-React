@@ -2,9 +2,7 @@ const { check } = require('express-validator')
 const validateResults = require('../utils/handlerValidator')
 
 const validatorRegister = [
-  check('firstname').exists().notEmpty().isLength({ min: 3, max: 50 }), // revisar notas de qa US
-  check('lastname').exists().notEmpty().isLength({ min: 3, max: 50 }), // revisar notas de qa US
-  check('age').exists().notEmpty().isNumeric(),
+  check('username').exists().notEmpty().isLength({ min: 6, max: 50 }),
   check('password')
     .exists()
     .notEmpty()
