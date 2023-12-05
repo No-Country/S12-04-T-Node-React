@@ -1,19 +1,8 @@
-const express = require("express");
-const { OpenAI } = require("openai");
-const functions = require("./functions");
+import express from "express";
+import "dotenv/config.js";
+import { OpenAI } from "openai";
+import {createAssistant} from "./functions.js";
 
-// Check OpenAI version is correct
-const requiredVersion = "1.1.1";
-const currentVersion = require("openai/package.json").version;
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-
-if (currentVersion < requiredVersion) {
-    throw new Error(
-        `Error: OpenAI version ${currentVersion} is less than the required version ${requiredVersion}`
-    );
-} else {
-    console.log("OpenAI version is compatible.");
-}
 
 // Start Express app
 const app = express();
@@ -21,11 +10,12 @@ const port = process.env.PORT || 8080;
 
 // Init client
 const client = new OpenAI({
-    key: process.env.OPENAI_API_KEY,
+    key:
+        process.env.OPENAI_API_KEY
 });
 
 // Create new assistant or load existing
-const assistantId = functions.createAssistant(client);
+const assistantId = createAssistant(client);
 
 // Start conversation thread
 app.get("/start", (req, res) => {

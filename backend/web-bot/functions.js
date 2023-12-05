@@ -1,6 +1,6 @@
-const fs = require("fs");
+import fs from "fs";
 
-async function createAssistant(client) {
+export async function createAssistant(client) {
     const assistantFilePath = "assistant.json";
 
     if (fs.existsSync(assistantFilePath)) {
@@ -35,6 +35,3 @@ async function createAssistant(client) {
     }
 }
 
-module.exports = {
-    createAssistant,
-};
