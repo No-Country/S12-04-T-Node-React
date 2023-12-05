@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import img from '../assets/images/Group8.svg';
-import { Link, useAsyncValue } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const initialValues = {
@@ -14,7 +14,7 @@ const Login = () => {
   // console.log('ruta', url);
   const [dataUser, setDataUser] = useState(initialValues);
   // const {error, setError} = useState({});
-  
+  const navigate = useNavigate();
   const validate = () => {
     let errorsList = {};
 
@@ -37,7 +37,6 @@ const Login = () => {
   };
   const handleData = async (e) => {
     e.preventDefault();
-    console.log(dataUser);
     if(Object.keys(validate()).length === 0){
       await fetch('https://chefgtp.onrender.com/api/auth',{
         method: 'POST',
@@ -49,8 +48,8 @@ const Login = () => {
       .then(response => response.json())
       .then(response => {
         localStorage.setItem('loginData', JSON.stringify(response.data))
-        
-        console.log(response)})
+        navigate('/chat')
+        })
       .catch(error => console.log(error))   
       .finally(() => {
         console.log('Finalizado');
@@ -71,9 +70,9 @@ const Login = () => {
         
         <input 
         style={{backgroundColor: 'rgba(118, 120, 118, 0.46)'}}
-        className='w-11/12 mx-auto border ps-2 text-xl py-2  placeholder:bolder placeholder:text-black placeholder:text-900'
+        className='w-11/12 mx-auto border ps-2 text-base py-2  placeholder:bolder placeholder:text-black placeholder:text-900'
         type="text" 
-        placeholder="Email"
+        placeholder="Email..."
         name="email"
         value={dataUser.email}
         onChange={(e) => setDataUser({ ...dataUser, email: e.target.value })} 
@@ -85,7 +84,7 @@ const Login = () => {
 
         <input 
         style={{backgroundColor: 'rgba(118, 120, 118, 0.46)'}}
-        className='w-11/12 mx-auto ps-2 text-xl py-2 mt-3  placeholder:bolder placeholder:text-black placeholder:text-900'
+        className='w-11/12 mx-auto ps-2 text-base py-2 mt-3  placeholder:bolder placeholder:text-black placeholder:text-900'
         type="password" 
         name="password"
         placeholder='Contraseña...'
@@ -97,7 +96,7 @@ const Login = () => {
         <Link to="/" className="text-xl font-bold mt-2 ms-4 sm:ms-8" style={{fontFamily: 'SF Pro Display'}}>¿Has olvidado la contraseña?</Link>
 
         
-        <Link to="/auth/register" className="ms-4 sm:ms-8  btn btn-outline my-5 text-dark-900 font-bold border-amber-900 tracking-wider rounde me-4 sm:me-6" style={{
+        <Link to="/auth/register" className="ms-4 sm:ms-8  btn btn-outline hover:bg-[#6fffa6d3] my-5 text-dark-900 font-bold border-amber-900  rounded me-4 sm:me-6" style={{
         borderRadius: '10px'}}>Registrate</Link>
 
 
@@ -105,7 +104,7 @@ const Login = () => {
 
         <button 
         type="submit" 
-        className="btn btn-amber-900 hover:bg-[#17f36b] text-white  tracking-wider py-5 px-4 rounded ms-4 sm:ms-8 me-4 sm:me-6"
+        className="btn btn-amber-900  text-white py-5 px-4 rounded ms-4 sm:ms-8 me-4 sm:me-6"
         style={{backgroundColor: '#8D2607',
         borderRadius: '10px'}}>
           Iniciar Sesion</button>
