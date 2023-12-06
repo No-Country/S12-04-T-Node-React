@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import img from '../assets/images/Group8.svg';
 import { Link, useNavigate } from 'react-router-dom';
+import {useAuthStore} from '../store/auth'
+
 
 
 const initialValues = {
@@ -9,6 +11,11 @@ const initialValues = {
 }
 
 const Login = () => {
+
+const setUid = useAuthStore((state) => state.setUid);
+const setUsername = useAuthStore((state) => state.setUsername);
+const setToken = useAuthStore((state) => state.setToken);
+
   // const url = useLocation();
   // // const ruta = url.state;
   // console.log('ruta', url);
@@ -47,7 +54,10 @@ const Login = () => {
       })
       .then(response => response.json())
       .then(response => {
-        localStorage.setItem('loginData', JSON.stringify(response.data))
+        // localStorage.setItem('loginData', JSON.stringify(response.data))
+        setUid(response.data.uid)
+        setToken(response.data.token)
+        setUsername(response.data.username)
         navigate('/chat')
         })
       .catch(error => console.log(error))   

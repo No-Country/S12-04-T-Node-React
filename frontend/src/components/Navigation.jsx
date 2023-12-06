@@ -4,6 +4,8 @@ import { Fragment } from "react";
 /* Importaciones de bibliotecas terceros */
 import { Link } from "react-router-dom";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
+import {useAuthStore} from '../store/auth'
+import {useNavigate} from 'react-router-dom'
 
 /* Importaciones de imágenes */
 import hatLogo from "../assets/images/hat-logo.svg";
@@ -17,6 +19,16 @@ function classNames(...classes) {
 
 /* ||| COMPONENTE NAVBAR ||| */
 export const Navigation = () => {
+
+const logout = useAuthStore(state => state.logout)
+const token = useAuthStore(state => state.token)
+const navigate = useNavigate()
+
+const handleLogout = () => {
+  logout();
+  navigate("/")
+}
+
   /* || JSX || */
   return (
     <Disclosure
@@ -50,11 +62,15 @@ export const Navigation = () => {
                       <Link to="/auth">
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">Open user menu</span>
-                        <img
+                      {
+                        !token && (
+                          <img
                           className="h-10 w-10 rounded-full"
                           src={userLogo}
                           alt=""
                         />
+                        )
+                      }
                       </Link>
                     </Menu.Button>
                   </div>
@@ -65,11 +81,15 @@ export const Navigation = () => {
                     <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
-                      <img
+                    {
+                      token && (
+                        <img
                         className="h-10 w-10 rounded-full"
                         src={userProphile}
                         alt=""
                       />
+                      )
+                    }
                     </Menu.Button>
                   </div>
                   <Transition
@@ -98,7 +118,7 @@ export const Navigation = () => {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                            href="/favorites"
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
@@ -123,15 +143,15 @@ export const Navigation = () => {
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="#"
+                          <button
+                            onClick={handleLogout}
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
                             Cerrar sesión
-                          </a>
+                          </button>
                         )}
                       </Menu.Item>
                     </Menu.Items>

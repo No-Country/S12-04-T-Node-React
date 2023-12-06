@@ -3,8 +3,11 @@ import { useState } from "react";
 import response from "../mockup/response.json";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import {useAuthStore} from '../store/auth'
 
 const Chat = () => {
+
+const username = useAuthStore((state) => state.username);
 
   const [ingredients, setIngredients] = useState("");
   const [option, setOption] = useState(false);
@@ -36,7 +39,7 @@ const Chat = () => {
           </div>
         </div>
         <div className="chat-bubble bg-[#F9E9E7] text-slate-800">
-          <p>Hola, dime que ingredientes tienes!</p>
+          <p>Hola {username}, dime que ingredientes tienes!</p>
         </div>
       </div>
       {ingredients && (
