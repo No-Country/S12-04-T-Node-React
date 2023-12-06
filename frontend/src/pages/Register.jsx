@@ -48,7 +48,7 @@ const Register = () => {
       <img src={Group8} alt="logo" className="w-[11rem] mx-auto " />
       <h1 className="text-4xl mt-4">BIENVENIDO</h1>
 
-      <div className="flex flex-col w-2/5 p-4  gap-5 justify-center items-center scale-90">
+      <div className="flex flex-col lg:w-2/5 w-full p-4  gap-5 justify-center items-center scale-90">
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -56,7 +56,7 @@ const Register = () => {
         >
           {({ errors, values }) => (
             <Form className=" flex flex-col w-full gap-4">
-              <div className=" relative flex items-center gap-4 w-full">
+              <div className=" relative flex items-center lg:gap-4 w-full  ">
                 <img
                   src={file}
                   className="rounded-full border-[6px] border-[#eaeaea]  w-28 h-28 object-cover "
