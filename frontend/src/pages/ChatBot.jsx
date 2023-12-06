@@ -3,7 +3,7 @@ import Chat from "../components/Chat"
 
 const ChatBot = () => {
   return (
-    <header className="flex justify-center mt-12">
+    <header className="flex justify-center">
       <Chat/>
     </header>
   )

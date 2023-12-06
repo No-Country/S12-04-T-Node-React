@@ -20,10 +20,6 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/signup",
-        element: <Register />,
-      },
-      {
         path: "/chat",
         element: <ChatBot />,
       },
@@ -38,7 +34,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "/auth/*",
+    path: "/auth/",
     element: <LayoutAuth />,
     errorElement: <NotFound />,
     children: [
