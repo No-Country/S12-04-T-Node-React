@@ -9,7 +9,7 @@ const Chat = () => {
 
 const username = useAuthStore((state) => state.username);
 
-  const [ingredients, setIngredients] = useState("");
+  const [ingredients, setIngredients] = useState(null);
   const [option, setOption] = useState(false);
 
   const handleClick = (e) => {
@@ -39,7 +39,7 @@ const username = useAuthStore((state) => state.username);
           </div>
         </div>
         <div className="chat-bubble bg-[#F9E9E7] text-slate-800">
-          <p>Hola {username}, dime que ingredientes tienes!</p>
+          <p>Hola {username ? username : "invitado"}, dime que ingredientes tienes!</p>
         </div>
       </div>
       {ingredients && (
