@@ -15,7 +15,7 @@ const Home = () => {
               ¡Conversa con el chef!
             </h1>
             <p className="text-center text-white text-base text-[0.73rem] sm:text-lg md:text-xl lg:text-2xl font-bold">
-              Cocina con lo tengas en el momento
+              Cocina con lo que tengas en el momento
             </p>
           </div>
         </div>

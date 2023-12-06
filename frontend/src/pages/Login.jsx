@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import img from '../assets/images/Group8.svg';
 import { Link, useNavigate } from 'react-router-dom';
+import {useAuthStore} from '../store/auth';
+// import { Formik, Form,  Field, ErrorMessage } from 'formik';
+import eyeClose  from '../assets/images/eyeClose.svg';
+import eyeOpen  from '../assets/images/eyeOpen.svg';
+
 
 
 const initialValues = {
@@ -9,11 +14,16 @@ const initialValues = {
 }
 
 const Login = () => {
-  // const url = useLocation();
-  // // const ruta = url.state;
-  // console.log('ruta', url);
+
+const [showPassword, setShowPassword] = useState(false);
+
+const setUid = useAuthStore((state) => state.setUid);
+const setUsername = useAuthStore((state) => state.setUsername);
+const setToken = useAuthStore((state) => state.setToken);
+
+  
   const [dataUser, setDataUser] = useState(initialValues);
-  // const {error, setError} = useState({});
+  
   const navigate = useNavigate();
   const validate = () => {
     let errorsList = {};
@@ -27,10 +37,10 @@ const Login = () => {
     //   };
       if(!dataUser.password)
       errorsList = { ...errorsList, password: "Campo obligatorio." };
-      else if(dataUser.password.length < 4 || dataUser.password.length > 8)
+      else if(dataUser.password.length < 8 || dataUser.password.length > 16)
       errorsList = {
         ...errorsList,
-        password: "Debe tener como minimo 4 caracteres y 8 maximo.",
+        password: "Debe tener como minimo 8 caracteres y 16 maximo.",
       };
 
     return errorsList;
@@ -47,7 +57,10 @@ const Login = () => {
       })
       .then(response => response.json())
       .then(response => {
-        localStorage.setItem('loginData', JSON.stringify(response.data))
+        // localStorage.setItem('loginData', JSON.stringify(response.data))
+        setUid(response.data.uid)
+        setToken(response.data.token)
+        setUsername(response.data.username)
         navigate('/chat')
         })
       .catch(error => console.log(error))   
@@ -71,7 +84,7 @@ const Login = () => {
         <input 
         style={{backgroundColor: 'rgba(118, 120, 118, 0.46)'}}
         className='w-11/12 mx-auto border ps-2 text-base py-2  placeholder:bolder placeholder:text-black placeholder:text-900'
-        type="text" 
+        type="email" 
         placeholder="Email..."
         name="email"
         value={dataUser.email}
@@ -81,17 +94,21 @@ const Login = () => {
         <small className='text-red-600 mt-2 ms-4 sm:ms-8'>{validate().email}</small>
 
         
+        <div className="relative w-11/12 mx-auto">
 
         <input 
         style={{backgroundColor: 'rgba(118, 120, 118, 0.46)'}}
-        className='w-11/12 mx-auto ps-2 text-base py-2 mt-3  placeholder:bolder placeholder:text-black placeholder:text-900'
-        type="password" 
+        className='w-full  ps-2 text-base py-2 mt-3  placeholder:bolder placeholder:text-black placeholder:text-900'
+        type={showPassword? 'text' : 'password'} 
         name="password"
         placeholder='Contraseña...'
         value={dataUser.password} 
         
         onChange={(e) => setDataUser({ ...dataUser, password: e.target.value })}
+        
         />
+        <div className='absolute z-2 top-6 right-5'><img src={showPassword ? eyeOpen : eyeClose} alt="eye" onClick={() => setShowPassword(!showPassword)} className="w-7" /></div>
+        </div>
         <small className='text-red-600 mt-2 ms-4 sm:ms-8'> {validate().password}</small>
         <Link to="/" className="text-xl font-bold mt-2 ms-4 sm:ms-8" style={{fontFamily: 'SF Pro Display'}}>¿Has olvidado la contraseña?</Link>
 

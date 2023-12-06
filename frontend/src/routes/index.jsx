@@ -8,6 +8,7 @@ import NotFound from "../pages/NotFound";
 import Recipe from "../pages/Recipe";
 import LayoutAuth from "../components/LayoutAuth";
 import Favorites from "../pages/Favorites";
+import LayoutPrivate from "../components/LayoutPrivate";
 
 export const router = createBrowserRouter([
   {
@@ -20,10 +21,6 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/signup",
-        element: <Register />,
-      },
-      {
         path: "/chat",
         element: <ChatBot />,
       },
@@ -31,14 +28,10 @@ export const router = createBrowserRouter([
         path: "/recipe",
         element: <Recipe />,
       },
-      {
-        path: "/favorites",
-        element: <Favorites />,
-      },
     ],
   },
   {
-    path: "/auth/*",
+    path: "/auth/",
     element: <LayoutAuth />,
     errorElement: <NotFound />,
     children: [
@@ -49,6 +42,17 @@ export const router = createBrowserRouter([
       {
         path: "register", // Usando ruta relativa
         element: <Register />,
+      },
+    ],
+  },
+  {
+    path: "/favorites", // Ruta para guardar recetas si esta logueado
+    element: <LayoutPrivate />,
+    errorElement: <NotFound />,
+    children: [
+      {
+        path: "/favorites",
+        element: <Favorites />,
       },
     ],
   },
