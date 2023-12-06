@@ -92,3 +92,19 @@ h4 {
 .bs-dark {
   box-shadow: var(--box-shadow-dark);
 }
+
+.inputRegister {
+  width: 100%;
+  margin-block: auto;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  background-color: #e0e0e0;
+  border: solid 4px #858585;
+  border-radius: 0.5rem;
+  padding-inline-start: 0.5rem;
+  padding: 0.5rem;
+}
+::placeholder {
+  color: #100f0fb5 !important;
+  font-weight: 600 !important;
+}
