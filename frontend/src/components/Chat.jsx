@@ -8,6 +8,7 @@ const Chat = () => {
   const [option, setOption] = useState(false)
   console.log(option);
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setIngredients(message);
@@ -53,9 +54,7 @@ const handleClick = (e) => {
             <div className="chat-bubble bg-[#F9E9E7] text-slate-800">
               <p> Aqui tienes una receta:</p>
               <br />
-              <p>
-              {response.instructions}
-              </p>
+              <p>{response.instructions}</p>
             </div>
           </div>
           <div className="flex flex-col gap-16 my-6">
@@ -69,16 +68,18 @@ const handleClick = (e) => {
               >
                 Si
               </Link>
-              <button onClick={handleClick} className="btn bg-red-800 hover:bg-slate-800 px-32 col-12 w-[40%] text-slate-50 text-xl">
+              <button
+                onClick={handleClick}
+                className="btn bg-red-800 hover:bg-slate-800 px-32 col-12 w-[40%] text-slate-50 text-xl"
+              >
                 No
               </button>
             </div>
           </div>
         </div>
       )}
-      {
-        option && (
-          <div className="flex flex-col">
+      {option && (
+        <div className="flex flex-col">
           <div className="chat chat-start">
             <div className="chat-image avatar">
               <div className="w-16 rounded-full">
@@ -88,9 +89,7 @@ const handleClick = (e) => {
             <div className="chat-bubble bg-[#F9E9E7] text-slate-800">
               <p> Aqui tienes una alternativa:</p>
               <br />
-              <p>
-              {response.optional}
-              </p>
+              <p>{response.optional}</p>
             </div>
           </div>
           <div className="flex flex-col gap-16 my-6">
@@ -104,14 +103,16 @@ const handleClick = (e) => {
               >
                 Si
               </Link>
-              <button onClick={handleClick} className="btn bg-red-800 hover:bg-slate-800 px-32 col-12 w-[40%] text-slate-50 text-xl">
+              <button
+                onClick={handleClick}
+                className="btn bg-red-800 hover:bg-slate-800 px-32 col-12 w-[40%] text-slate-50 text-xl"
+              >
                 No
               </button>
             </div>
           </div>
         </div>
-        )
-      }
+      )}
       {!ingredients ? (
         <form
           onSubmit={handleSubmit}

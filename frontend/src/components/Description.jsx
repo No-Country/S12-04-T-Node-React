@@ -1,9 +1,28 @@
 import SharedButton from "./SharedButton";
 import { FaHeart } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import response from "../mockup/response.json";
+import useRecipeStore from "../store/useRecipeStore";
+import Swal from "sweetalert2";
 
 const Description = () => {
+  const addToFavorites = useRecipeStore((state) => state.addToFavorites);
+  const favorites = useRecipeStore((state) => state.favorites);
+  console.log(favorites);
+
+  const handleAddToFavorites = () => {
+    addToFavorites({
+      title: response.title,
+      description: response.description,
+      instructions: response.instructions,
+    });
+
+    Swal.fire({
+      icon: "success",
+      title: "Receta añadida a favoritos",
+      text: "¡La receta se ha guardado en tus favoritos!",
+      confirmButtonText: "OK",
+    });
+  };
 
   return (
     <div className="flex flex-col gap-4 items-center sm:m-12 bg-[#F8FAFA]">
@@ -22,10 +41,10 @@ const Description = () => {
         <p>{response.instructions}</p>
       </div>
       <div className="flex justify-between gap-8 my-8 sm:ml-[600px]">
-        <Link to="/favorites">
+        <button onClick={handleAddToFavorites}>
           <FaHeart className="w-6 h-6 text-red-600" />
-        </Link>
-        <SharedButton text={response.title + ':' + response.instructions} />
+        </button>
+        <SharedButton text={response.title + ":" + response.instructions} />
       </div>
     </div>
   );
