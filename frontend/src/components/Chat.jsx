@@ -6,15 +6,10 @@ import * as Yup from "yup";
 
 const Chat = () => {
 
-<<<<<<< HEAD
-
-  const handleSubmit = (e) => {
-=======
   const [ingredients, setIngredients] = useState("");
   const [option, setOption] = useState(false);
 
   const handleClick = (e) => {
->>>>>>> 79278ce2c30145c52862b37356d40dd826a97150
     e.preventDefault();
     setOption(true);
   };
