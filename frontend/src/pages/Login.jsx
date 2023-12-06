@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import img from '../assets/images/Group8.svg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const initialValues = {
-  username: '',
+  email: '',
   password: '',
 }
 
@@ -14,17 +14,17 @@ const Login = () => {
   // console.log('ruta', url);
   const [dataUser, setDataUser] = useState(initialValues);
   // const {error, setError} = useState({});
-  
+  const navigate = useNavigate();
   const validate = () => {
     let errorsList = {};
 
-    if (!dataUser.username)
-      errorsList = { ...errorsList, username: "Campo obligatorio." };
-    else if (dataUser.username.length < 4 || dataUser.username.length > 8)
-      errorsList = {
-        ...errorsList,
-        username: "Debe tener como minimo 4 caracteres y 8 maximo.",
-      };
+    if (!dataUser.email)
+      errorsList = { ...errorsList, email: "Campo obligatorio." };
+    // else if (dataUser.username.length < 4 || dataUser.username.length > 8)
+    //   errorsList = {
+    //     ...errorsList,
+    //     username: "Debe tener como minimo 4 caracteres y 8 maximo.",
+    //   };
       if(!dataUser.password)
       errorsList = { ...errorsList, password: "Campo obligatorio." };
       else if(dataUser.password.length < 4 || dataUser.password.length > 8)
@@ -35,14 +35,30 @@ const Login = () => {
 
     return errorsList;
   };
-  const handleData = (e) => {
+  const handleData = async (e) => {
     e.preventDefault();
     if(Object.keys(validate()).length === 0){
-      console.log(dataUser);
+      await fetch('https://chefgtp.onrender.com/api/auth',{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dataUser)
+      })
+      .then(response => response.json())
+      .then(response => {
+        localStorage.setItem('loginData', JSON.stringify(response.data))
+        navigate('/chat')
+        })
+      .catch(error => console.log(error))   
+      .finally(() => {
+        console.log('Finalizado');
+      })
     }else{
       alert('Verifique los Campos')
     }
-  }
+  };
+  
   return (
     <>  
     <div className=' h-screen flex-col items-center justify-center py-5'  >
@@ -54,21 +70,21 @@ const Login = () => {
         
         <input 
         style={{backgroundColor: 'rgba(118, 120, 118, 0.46)'}}
-        className='w-11/12 mx-auto border ps-2 text-xl py-2  placeholder:bolder placeholder:text-black placeholder:text-900'
+        className='w-11/12 mx-auto border ps-2 text-base py-2  placeholder:bolder placeholder:text-black placeholder:text-900'
         type="text" 
-        placeholder="Usuario"
-        name="username"
+        placeholder="Email..."
+        name="email"
         value={dataUser.email}
-        onChange={(e) => setDataUser({ ...dataUser, username: e.target.value })} 
+        onChange={(e) => setDataUser({ ...dataUser, email: e.target.value })} 
         
         autoFocus       />
-        <small className='text-red-600 mt-2 ms-4 sm:ms-8'>{validate().username}</small>
+        <small className='text-red-600 mt-2 ms-4 sm:ms-8'>{validate().email}</small>
 
         
 
         <input 
         style={{backgroundColor: 'rgba(118, 120, 118, 0.46)'}}
-        className='w-11/12 mx-auto ps-2 text-xl py-2 mt-3  placeholder:bolder placeholder:text-black placeholder:text-900'
+        className='w-11/12 mx-auto ps-2 text-base py-2 mt-3  placeholder:bolder placeholder:text-black placeholder:text-900'
         type="password" 
         name="password"
         placeholder='Contraseña...'
@@ -80,7 +96,7 @@ const Login = () => {
         <Link to="/" className="text-xl font-bold mt-2 ms-4 sm:ms-8" style={{fontFamily: 'SF Pro Display'}}>¿Has olvidado la contraseña?</Link>
 
         
-        <Link to="/auth/register" className="ms-4 sm:ms-8  btn btn-outline my-5 text-dark-900 font-bold border-amber-900 tracking-wider rounde me-4 sm:me-6" style={{
+        <Link to="/auth/register" className="ms-4 sm:ms-8  btn btn-outline hover:bg-[#6fffa6d3] my-5 text-dark-900 font-bold border-amber-900  rounded me-4 sm:me-6" style={{
         borderRadius: '10px'}}>Registrate</Link>
 
 
@@ -88,7 +104,7 @@ const Login = () => {
 
         <button 
         type="submit" 
-        className="btn btn-amber-900 hover:bg-[#17f36b] text-white  tracking-wider py-5 px-4 rounded ms-4 sm:ms-8 me-4 sm:me-6"
+        className="btn btn-amber-900  text-white py-5 px-4 rounded ms-4 sm:ms-8 me-4 sm:me-6"
         style={{backgroundColor: '#8D2607',
         borderRadius: '10px'}}>
           Iniciar Sesion</button>
