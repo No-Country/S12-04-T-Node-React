@@ -24,7 +24,7 @@ const Description = () => {
       <div className="flex sm:gap-8 my-8">
         <SharedButton text={response.title + ':' + response.instructions} />
         <Link to="/favorites" className="btn sm:btn-wide bg-red-600 text-lg  text-slate-50">
-          Favoritos
+          Me gusta
           <FaHeart className="w-6 h-6" />
         </Link>
       </div>
