@@ -40,11 +40,12 @@ const Description = () => {
         <h4 className="font-semibold">Instrucciones</h4>
         <p>{response.instructions}</p>
       </div>
-      <div className="flex justify-between gap-8 my-8 sm:ml-[600px]">
-        <button onClick={handleAddToFavorites}>
-          <FaHeart className="w-6 h-6 text-red-600" />
-        </button>
+      <div className="flex justify-between gap-8 my-8">
         <SharedButton text={response.title + ":" + response.instructions} />
+        <button onClick={handleAddToFavorites} className="btn sm:btn-wide bg-red-600 text-lg text-slate-50">
+          Me gusta
+          <FaHeart className="w-5 h-5" />
+        </button>
       </div>
     </div>
   );
