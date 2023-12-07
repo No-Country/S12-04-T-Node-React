@@ -5,6 +5,7 @@ const cors = require('cors')
 const dbConnect = require('./config/mongo')
 const userRouter = require('./routes/user.routes')
 const authRouter = require('./routes/auth.routes')
+const recipeRouter = require('./routes/recipe.routes')
 
 dbConnect()
 const port = process.env.PORT || 4500
@@ -19,6 +20,7 @@ app.get('/', (req, res) => {
 
 app.use('/api', authRouter)
 app.use('/api/user', userRouter)
+app.use('api/recipe', recipeRouter)
 
 app.listen(port, () => {
   console.log(`server run ${port}`)
