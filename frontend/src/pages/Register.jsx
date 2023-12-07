@@ -17,7 +17,11 @@ const Register = () => {
   const [file, setFile] = useState("/user.png");
   const validationSchema = yup.object({
     username: yup.string().required("Campo obligatorio"),
-    email: yup.string().required("Campo obligatorio").email("Correo no valido"),
+    email: yup
+      .string()
+      .required("Campo obligatorio")
+      .email("Correo no valido")
+      .matches(/@[^.]*\./, "Correo no valido"),
     password: yup
       .string()
       .required("Campo obligatorio")
