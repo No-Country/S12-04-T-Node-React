@@ -4,9 +4,9 @@ const recipeRouter = express.Router()
 const { validatorCreateRecipe, validatorGetRecipe } = require('../validators/recipe')
 const { getAllRecipe, getRecipeById, createRecipe, deleteRecipe } = require('../controllers/recipe.controller')
 
-userRouter.get('/', getAllRecipe)
-userRouter.post('/saveRecipe', validatorCreateRecipe,createRecipe)
-userRouter.get('/recipes/:id', validatorGetRecipe ,getRecipeById )
-userRouter.delete('/deleteRecipe/:id', deleteRecipe)
+recipeRouter.get('/', getAllRecipe)
+recipeRouter.post('/saveRecipe', validatorCreateRecipe,createRecipe)
+recipeRouter.get('/recipes/:id', validatorGetRecipe ,getRecipeById )
+recipeRouter.delete('/deleteRecipe/:id', deleteRecipe)
 
 module.exports = recipeRouter
