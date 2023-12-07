@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 
 app.use('/api', authRouter)
 app.use('/api/user', userRouter)
-app.use('api/recipe', recipeRouter)
+app.use('/api/recipe', recipeRouter)
 
 app.listen(port, () => {
   console.log(`server run ${port}`)
