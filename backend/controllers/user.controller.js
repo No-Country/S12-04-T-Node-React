@@ -2,7 +2,6 @@ const Crypto = require('crypto')
 const bcrypt = require('bcryptjs')
 const User = require('../models/users.model')
 const { matchedData } = require('express-validator')
-const { generateToken } = require('../utils/jwt')
 
 async function createUser(req, res) {
   const result = matchedData(req)
@@ -21,17 +20,12 @@ async function createUser(req, res) {
     user.uid = Crypto.randomUUID()
     const salt = bcrypt.genSaltSync()
     user.password = bcrypt.hashSync(password, salt)
-    user.email = email.toLowerCase()
 
     await user.save()
 
-    const token = await generateToken(user.uid)
-
     res.status(201).json({
       data: {
-        uid: user.uid,
-        username: user.username,
-        token
+        msg: 'Usuario creado exitosamente'
       }
     })
   } catch (error) {

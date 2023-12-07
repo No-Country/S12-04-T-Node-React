@@ -7,20 +7,18 @@ async function loginUser(req, res) {
   const result = matchedData(req)
   const { email, password } = result
 
-  const emailParsed = email.toLowerCase()
-
   try {
-    const user = await User.findOne({ emailParsed })
+    const user = await User.findOne({ email })
 
     if (!user) {
-      return res.status(301).json({
+      return res.status(401).json({
         errors: { msg: 'Email o contraseña incorrectos' }
       })
     }
 
     const passValidated = bcrypt.compareSync(password, user.password)
     if (!passValidated) {
-      return res.status(301).json({
+      return res.status(401).json({
         errors: { msg: 'Email o contraseña incorrectos' }
       })
     }

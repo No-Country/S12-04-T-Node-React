@@ -3,12 +3,12 @@ const validateResults = require('../utils/handlerValidator')
 
 const validatorRegister = [
   check('username').exists().notEmpty().isLength({ min: 6, max: 50 }),
+  check('email').exists().notEmpty().isEmail(),
   check('password')
     .exists()
     .notEmpty()
     .isAlphanumeric()
     .isLength({ min: 8, max: 16 }),
-  check('email').exists().notEmpty().isEmail(),
   (req, res, next) => {
     return validateResults(req, res, next)
   }
