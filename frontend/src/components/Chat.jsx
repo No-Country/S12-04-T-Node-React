@@ -132,7 +132,7 @@ const username = useAuthStore((state) => state.username);
             name="message"
             type="text"
             placeholder="Escribe lo que tienes en la heladera"
-            className="input border-2 border-slate-400 rounded-2xl w-full"
+            className="input border-2 border-slate-400 rounded-2xl w-full text-sm sm:text-lg"
           />
           <button type="submit" className={errors.message ? 'hidden' : "absolute right-2 mt-3 "}>
             <img src="/enviar.png" alt="button" />
