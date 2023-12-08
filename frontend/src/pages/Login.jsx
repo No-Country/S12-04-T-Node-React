@@ -1,15 +1,19 @@
-import { useState, } from "react";
+import { useState} from "react";
 import img from "../assets/images/Group8.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/auth";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import eyeClose from "../assets/images/eyeClose.svg";
 import eyeOpen from "../assets/images/eyeOpen.svg";
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
+import { Report } from "notiflix/build/notiflix-report-aio";
 
 const initialValues = {
   email: "",
   password: "",
 };
+
+
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -40,6 +44,7 @@ const Login = () => {
   };
   const handleData = async () => {
     // e.preventDefault();
+    Loading.dots();
     if (Object.keys(validar()).length === 0) {
       await fetch("https://chefgtp.onrender.com/api/auth", {
         method: "POST",
@@ -50,16 +55,21 @@ const Login = () => {
       })
         .then((response) => response.json())
         .then((response) => {
+          if(response.errors) {
+            Report.failure(
+              'Email / Contraseña incorrectos',
+              'Volver a intentar',
+            );
+            Loading.remove();
+          }
+          Report.success(`Bienvenido ${response.data.username}`, 'Sesión iniciada');
+          Loading.remove(); 
           setUid(response.data.uid);
           setToken(response.data.token);
           setUsername(response.data.username);
           navigate("/chat");
-          console.log('Entro');
         })
         .catch((error) => console.log(error))
-        .finally(() => {
-          console.log("Finalizado");
-        });
     } else {
       alert("Verifique los Campos");
     }
