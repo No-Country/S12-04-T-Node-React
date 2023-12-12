@@ -10,7 +10,6 @@ import {useNavigate} from 'react-router-dom'
 /* Importaciones de imágenes */
 import hatLogo from "../assets/images/hat-logo.svg";
 import userLogo from "../assets/images/user-logo.svg";
-import userProphile from "../assets/images/profile-exam.svg"
 
 /* Clases dinámicas perfil usuario */
 function classNames(...classes) {
@@ -18,7 +17,7 @@ function classNames(...classes) {
 }
 
 /* ||| COMPONENTE NAVBAR ||| */
-export const Navigation = () => {
+export const Navbar = () => {
 
 const logout = useAuthStore(state => state.logout)
 const token = useAuthStore(state => state.token)
@@ -33,7 +32,7 @@ const handleLogout = () => {
   return (
     <Disclosure
       as="nav"
-      className="bg-red-900 fixed z-10 top-0 w-full shadow-md shadow-slate-500/50"
+      className="bg-red-900 fixed z-10 py-2 top-0 w-full shadow-md shadow-slate-500/50"
     >
       {() => (
         <>
@@ -65,9 +64,9 @@ const handleLogout = () => {
                       {
                         !token && (
                           <img
-                          className="h-10 w-10 rounded-full"
+                          className="h-12 w-12 rounded-full"
                           src={userLogo}
-                          alt=""
+                          alt="avatar"
                         />
                         )
                       }
@@ -84,9 +83,9 @@ const handleLogout = () => {
                     {
                       token && (
                         <img
-                        className="h-10 w-10 rounded-full"
-                        src={userProphile}
-                        alt=""
+                        className="h-12 w-12 rounded-full"
+                        src= "https://i.pravatar.cc/300"
+                        alt="avatar"
                       />
                       )
                     }
@@ -101,13 +100,13 @@ const handleLogout = () => {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items className="absolute hidden sm:block right-0 z-10 mt-6 w-48 origin-top-right rounded-md bg-slate-50 py-1 ring-1 ring-black ring-opacity-5 focus:outline-none border border-gray-400">
                       <Menu.Item>
                         {({ active }) => (
                           <Link
                             to="/"
                             className={classNames(
-                              active ? "bg-gray-100" : "",
+                              active ? "text-red-900 font-medium" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
@@ -120,7 +119,7 @@ const handleLogout = () => {
                           <Link
                             to="/favorites"
                             className={classNames(
-                              active ? "bg-gray-100" : "",
+                              active ? "text-red-900 font-medium" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
@@ -128,25 +127,12 @@ const handleLogout = () => {
                           </Link>
                         )}
                       </Menu.Item>
-                      {/* <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Configuraciones
-                          </a>
-                        )}
-                      </Menu.Item> */}
                       <Menu.Item>
                         {({ active }) => (
                           <button
                             onClick={handleLogout}
                             className={classNames(
-                              active ? "bg-gray-100" : "",
+                              active ? "text-red-900 font-medium" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >

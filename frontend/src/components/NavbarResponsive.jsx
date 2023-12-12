@@ -1,28 +1,50 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import hatLogo from "../assets/images/hat-logo.svg";
-import { Navigation } from "./Navigation";
+import { Navbar } from "./Navbar";
+import { useState } from "react";
+import { useAuthStore } from "../store/auth";
 
 export default function NavbarResponsive() {
+  const [isOpen, setIsOpen] = useState(false);
+  const logout = useAuthStore(state => state.logout)
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    logout();
+    navigate("/auth")
+  }
+
   return (
     <>
       <div className="hidden sm:block">
-        <Navigation />
+        <Navbar />
       </div>
       <div className="sm:hidden absolute top-3 left-0 w-full z-10">
         <div className="flex relative">
-          <button className="absolute left-5 top-2 px-3 py-2 rounded-2xl bg-opacity-25 backdrop-filter p--0 backdrop-blur-md bg-red-700 shadow-lg shadow-slate-700/50">
-            <Link to="/" className="flex items-center gap-1">
-              <img className="h-6 w-auto" src={hatLogo} alt="Logo App" />
+          <div className="absolute left-1 top-1 px-3 py-2 rounded-2xl bg-opacity-50 backdrop-filter backdrop-blur-md bg-red-600 shadow-lg shadow-slate-500">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="flex items-center gap-2 p-2"
+            >
+              <img className="h-full w-auto" src={hatLogo} alt="Logo App" />
               <h1 className="text-white">Chef GPT</h1>
-            </Link>
-          </button>
-          {/* <div className="absolute right-5 top-1 p-2">
-            <img
-              className="h-8 w-8 rounded-full border-2"
-              src={userLogo}
-              alt=""
-            />
-          </div> */}
+            </button>
+          </div>
+          {isOpen && (
+            <div className="bg-opacity-50 backdrop-filter backdrop-blur-md bg-red-600 shadow-lg shadow-slate-500 w-72 h-[760px] text-white absolute top-20 rounded-md">
+              <ul className="flex flex-col gap-8 mt-8 ml-8">
+                <li>
+                  <Link to="/">Mi perfil</Link>
+                </li>
+                <li>
+                  <Link to="/favorites">Mis recetas</Link>
+                </li>
+                <li>
+                  <button onClick={handleLogout}>Cerrar sesion</button>
+                </li>
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </>
