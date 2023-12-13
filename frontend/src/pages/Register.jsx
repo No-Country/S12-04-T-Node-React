@@ -14,9 +14,13 @@ const initialValues = {
 };
 const Register = () => {
   const navigate = useNavigate();
-  const [file, setFile] = useState("/user.png");
+  const [urlImage, setUrlImage] = useState("/user.png");
+  const [file, setFile] = useState(null);
   const validationSchema = yup.object({
-    username: yup.string().required("Campo obligatorio"),
+    username: yup
+      .string()
+      .required("Campo obligatorio")
+      .min(5, "Nombre de usuario debe de ser minimo 5 caracteres"),
     email: yup
       .string()
       .required("Campo obligatorio")
@@ -25,26 +29,45 @@ const Register = () => {
     password: yup
       .string()
       .required("Campo obligatorio")
-      .min(8, "La contraseña requiere ser de minimo 8 caracteres"),
+      .min(8, "La contraseña requiere ser de minimo 8 caracteres")
+      .max(16, "La contraseña no puede ser mayor a 16 caracteres")
+      .matches(
+        /[a-zA-Z]/,
+        "La contraseña debe de contener al menos un caracter alfabetico"
+      ),
   });
 
   const onSubmit = async (values) => {
     if (values.password !== values.confirmPassword) return false;
 
     const { username, email, password } = values;
-    const newUserData = { username, email, password };
-    sendNewUser(newUserData);
+    const formData = new FormData();
+    formData.append("filename", file);
+    formData.append("username", username);
+    formData.append("email", email);
+    formData.append("password", password);
+    const userData = await sendNewUser(formData);
+    if (userData.errors) {
+      Report.failure(
+        "Fallo al registrar",
+        "Por favor ingrese nuevamente datos correctos y corrobore que el correo electronico no haya sido utilizado",
+        "Volver"
+      );
+    }
 
     Report.success(
       "Registro Exitoso",
       "Por favor ingrese con los datos que se registro",
       "Siguiente",
-      () => navigate("/auth")
+      () => {
+        navigate("/auth");
+      }
     );
   };
 
   function handleChanges(e) {
-    setFile(URL.createObjectURL(e.target.files[0]));
+    setUrlImage(URL.createObjectURL(e.target.files[0]));
+    setFile(e.target.files[0]);
   }
 
   return (
@@ -59,10 +82,13 @@ const Register = () => {
           onSubmit={onSubmit}
         >
           {({ errors, values }) => (
-            <Form className=" flex flex-col w-full gap-4">
+            <Form
+              className=" flex flex-col w-full gap-4"
+              encType="multipart/form-data"
+            >
               <div className=" relative flex items-center lg:gap-4 w-full  ">
                 <img
-                  src={file}
+                  src={urlImage}
                   className="rounded-full border-[6px] border-[#eaeaea]  w-28 h-28 object-cover "
                 />
                 <div>
