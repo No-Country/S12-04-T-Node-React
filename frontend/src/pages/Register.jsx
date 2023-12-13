@@ -47,6 +47,7 @@ const Register = () => {
     formData.append("email", email);
     formData.append("password", password);
     const userData = await sendNewUser(formData);
+  
     if (userData.errors) {
       Report.failure(
         "Fallo al registrar",
