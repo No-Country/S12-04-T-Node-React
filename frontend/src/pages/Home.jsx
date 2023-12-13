@@ -19,10 +19,10 @@ const Home = () => {
             </p>
           </div>
         </div>
-        <button className="bg-red-900 shadow-md shadow-white xl:shadow-black xl:shadow-xl rounded-md xl:rounded-2xl flex items-center justify-center absolute bottom-4 w-60 sm:w-96 xl:bottom-14 xl:w-[20rem]">
+        <button className="animate-jump-in bg-red-900 shadow-md shadow-white xl:shadow-black xl:shadow-xl rounded-md xl:rounded-2xl flex items-center justify-center absolute bottom-16 w-60 sm:w-96 xl:bottom-14 xl:w-[20rem]">
           <Link
             to="chat"
-            className="flex items-center text-white gap-2 py-[0.5rem] sm:py-[0.6rem] font-semibold text-xs xl:text-3xl"
+            className="flex items-center text-white gap-2 py-[0.5rem] sm:py-[0.6rem] font-semibold text-lg xl:text-3xl"
           >
             Chatea con Goofy <ImBubbles2 className="text-white" size={20} />
           </Link>

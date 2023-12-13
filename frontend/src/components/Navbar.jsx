@@ -1,9 +1,6 @@
-/* Importación de hooks o componentes de react */
-import { Fragment } from "react";
-
 /* Importaciones de bibliotecas terceros */
 import { Link } from "react-router-dom";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { Disclosure, Menu } from "@headlessui/react";
 import {useAuthStore} from '../store/auth'
 import {useNavigate} from 'react-router-dom'
 
@@ -91,16 +88,7 @@ const handleLogout = () => {
                     }
                     </Menu.Button>
                   </div>
-                  <Transition
-                    as={Fragment}
-                    enter="transition ease-out duration-100"
-                    enterFrom="transform opacity-0 scale-95"
-                    enterTo="transform opacity-100 scale-100"
-                    leave="transition ease-in duration-75"
-                    leaveFrom="transform opacity-100 scale-100"
-                    leaveTo="transform opacity-0 scale-95"
-                  >
-                    <Menu.Items className="absolute hidden sm:block right-0 z-10 mt-6 w-48 origin-top-right rounded-md bg-slate-50 py-1 ring-1 ring-black ring-opacity-5 focus:outline-none border border-gray-400">
+                    <Menu.Items className="animate-flip-down absolute hidden sm:block right-0 z-10 mt-6 w-48 origin-top-right rounded-md bg-slate-50 py-1 ring-1 ring-black ring-opacity-5 focus:outline-none border border-gray-400">
                       <Menu.Item>
                         {({ active }) => (
                           <Link
@@ -141,7 +129,6 @@ const handleLogout = () => {
                         )}
                       </Menu.Item>
                     </Menu.Items>
-                  </Transition>
                 </Menu>
               </div>
             </div>
