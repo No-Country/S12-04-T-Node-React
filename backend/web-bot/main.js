@@ -29,38 +29,46 @@ const client = new OpenAI({
 const assistantId = functions.createAssistant(client);
 
 // Start conversation thread
-app.get("/start", (req, res) => {
+app.get("/start", async (req, res) => {
     console.log("Starting a new conversation..."); // Debugging line
-    const thread = client.beta.threads.create();
+    const thread = await client.beta.threads.create();
     console.log(`New thread created with ID: ${thread.id}`); // Debugging line
     res.json({ thread_id: thread.id });
 });
 
 // Generate response
-app.post("/chat", express.json(), (req, res) => {
-    const { thread_id, message } = req.body;
+app.post("/chat", express.json(), async (req, res) => {
+    const { thread_id, content } = req.body;
 
     if (!thread_id) {
         console.log("Error: Missing thread_id"); // Debugging line
         return res.status(400).json({ error: "Missing thread_id" });
     }
 
-    console.log(`Received message: ${message} for thread ID: ${thread_id}`); // Debugging line
-
+    const text = content.text;
+    console.log(`Received message: ${text} for thread ID: ${thread_id}`); // Debugging line
+    
     // Add the user's message to the thread
     client.beta.threads.messages.create({
         thread_id,
         role: "user",
-        content: message,
+        content: content,
     });
 
     // Run the Assistant
+    console.log(`thread_id: ${thread_id}`);
+    let assistantId = "asst_vtmdjtAYxkYK2dKUqlyew0oY";
+    console.log(`assistantId: ${assistantId}`);
+    console.log(`content: ${JSON.stringify(content)}`);
+
     let run;
     (async () => {
         run = await client.beta.threads.runs.create({
             thread_id,
             assistant_id: assistantId,
-        });
+            input: content,
+        })
+
 
         // Check if the Run requires action (function call)
         while (true) {

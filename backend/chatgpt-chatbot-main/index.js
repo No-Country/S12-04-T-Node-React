@@ -1,4 +1,54 @@
+import express from "express";
 import OpenAI from "openai";
+import dotenv from "dotenv";
+dotenv.config();
+
+const app = express();
+app.use(express.json());
+
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+});
+
+let chatHistory = [];
+
+app.get("/start", (req, res) => {
+    chatHistory = [];
+    res.send("Chat iniciado");
+});
+
+app.post("/message", async (req, res) => {
+    const userInput = req.body.message;
+
+    try {
+        const messages = chatHistory.map(([role, content]) => ({
+            role,
+            content,
+        }));
+
+        messages.push({ role: "user", content: userInput });
+
+        const completion = await openai.chat.completions.create({
+            model: "gpt-4-1106-preview",
+            messages: messages,
+        });
+
+        const completionText = completion.choices[0].message.content;
+
+        chatHistory.push(["user", userInput]);
+        chatHistory.push(["assistant", completionText]);
+
+        res.json({ message: completionText });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Algo salió mal" });
+    }
+});
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`Server running on port ${port}`));
+
+/*import OpenAI from "openai";
 import readlineSync from "readline-sync";
 import colors from "colors";
 import dotenv from "dotenv";
@@ -52,3 +102,4 @@ async function main() {
 }
 
 main();
+*/
