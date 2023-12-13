@@ -14,18 +14,16 @@ const Description = () => {
 
   const handleAddToFavorites = () => {
     if (token) {
-      addToFavorites({
-        title: response.title,
-        description: response.description,
-        instructions: response.instructions,
-      });
       Confirm.prompt(
         `Hola ${username}`,
         "Elige el nombre de la receta!",
         "",
         "Guardar",
         "Cancelar",
-        () => {
+        (data) => {
+          addToFavorites({
+            title: data,
+          });
           console.log("receta guardada!");
         },
         () => {
@@ -33,7 +31,7 @@ const Description = () => {
         },
         {
           backgroundColor: "#D9D9D9",
-          titleColor: '#000000',
+          titleColor: "#000000",
           okButtonBackground: "#8C1407",
         }
       );

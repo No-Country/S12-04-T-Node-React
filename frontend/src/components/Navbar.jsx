@@ -18,6 +18,7 @@ export const Navbar = () => {
 
 const logout = useAuthStore(state => state.logout)
 const token = useAuthStore(state => state.token)
+const avatar = useAuthStore(state => state.avatar)
 const navigate = useNavigate()
 
 const handleLogout = () => {
@@ -81,7 +82,7 @@ const handleLogout = () => {
                       token && (
                         <img
                         className="h-12 w-12 rounded-full"
-                        src= "https://i.pravatar.cc/300"
+                        src= {avatar}
                         alt="avatar"
                       />
                       )

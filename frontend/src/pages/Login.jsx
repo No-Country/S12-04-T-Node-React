@@ -21,6 +21,7 @@ const Login = () => {
   const setUid = useAuthStore((state) => state.setUid);
   const setUsername = useAuthStore((state) => state.setUsername);
   const setToken = useAuthStore((state) => state.setToken);
+  const setAvatar = useAuthStore((state) => state.setAvatar);
 
   const [dataUser, setDataUser] = useState(initialValues);
 
@@ -55,6 +56,7 @@ const Login = () => {
       })
         .then((response) => response.json())
         .then((response) => {
+          console.log(response);
           if(response.errors) {
             Report.failure(
               'Email / Contraseña incorrectos',
@@ -67,6 +69,7 @@ const Login = () => {
           setUid(response.data.uid);
           setToken(response.data.token);
           setUsername(response.data.username);
+          setAvatar(response.data.avatar);
           navigate("/chat");
         })
         .catch((error) => console.log(error))
