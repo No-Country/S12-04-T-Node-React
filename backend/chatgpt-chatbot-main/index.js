@@ -29,7 +29,7 @@ app.post("/message", async (req, res) => {
         messages.push({ role: "user", content: userInput });
 
         const completion = await openai.chat.completions.create({
-            model: "gpt-4-1106-preview",
+            model: "gpt-3.5-turbo-0301",
             messages: messages,
         });
 
