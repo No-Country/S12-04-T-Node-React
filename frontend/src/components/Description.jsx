@@ -3,12 +3,13 @@ import { FaHeart } from "react-icons/fa";
 import response from "../mockup/response.json";
 import useRecipeStore from "../store/useRecipeStore";
 import { useAuthStore } from "../store/auth";
-import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { Confirm } from "notiflix/build/notiflix-confirm-aio";
 
 const Description = () => {
   const addToFavorites = useRecipeStore((state) => state.addToFavorites);
   const token = useAuthStore((state) => state.token);
+  const username = useAuthStore((state) => state.username);
   const navigate = useNavigate();
 
   const handleAddToFavorites = () => {
@@ -18,12 +19,24 @@ const Description = () => {
         description: response.description,
         instructions: response.instructions,
       });
-      Swal.fire({
-        icon: "success",
-        title: "Receta añadida a favoritos",
-        text: "¡La receta se ha guardado en tus favoritos!",
-        confirmButtonText: "OK",
-      });
+      Confirm.prompt(
+        `Hola ${username}`,
+        "Elige el nombre de la receta!",
+        "",
+        "Guardar",
+        "Cancelar",
+        () => {
+          console.log("receta guardada!");
+        },
+        () => {
+          console.log("cancelar!");
+        },
+        {
+          backgroundColor: "#D9D9D9",
+          titleColor: '#000000',
+          okButtonBackground: "#8C1407",
+        }
+      );
     } else {
       navigate("/auth");
     }
