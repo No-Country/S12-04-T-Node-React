@@ -1,15 +1,10 @@
 
-function FavoriteCard({img, title, description}) {
+function FavoriteCard({title, description,categoria}) {
   return (
-    <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-5 my-5">
-      <figure>
-        <img
-          src={img}
-          alt={title}
-        />
-      </figure>
-      <div className="card-body">
-        <h2 className="card-title">{title}</h2>
+    <div className="bg-[#D9D9D9] border-rounded rounded ps-7 py-5 mb-4 ">
+      
+      <div className={categoria}>
+        <h2 className="card-title" style={{textTransform: "capitalize"}}>{title}</h2>
         <p>{description}</p>
       </div>
     </div>
