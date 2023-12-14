@@ -4,7 +4,7 @@ import FavoriteCard from "../components/FavoriteCard";
 const Favorites = () => {
   const favorites = useRecipeStore((state) => state.favorites);
   console.log(favorites);
-  let categorias = ["Desayuno", "Almuerzo","Cena"];
+  // let categorias = ["Desayuno", "Almuerzo","Cena"];
 
   return (
     <div className="max-w-screen-2xl mx-auto px-4">
@@ -15,13 +15,13 @@ const Favorites = () => {
           <h1 className="text-6xl font-bold">No tienes recetas guardadas</h1>
         )}
         <div className=" w-full">
-          <select className="bg-[#D9D9D9] border  border-[#8C1407] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-3">
+          {/* <select className="bg-[#D9D9D9] border  border-[#8C1407] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-3">
             <option value="" disabled defaultValue="" selected className='font-bold'>Categorias
             </option>
             {categorias.map((categoria,index) => (
                 <option key={index} value={categoria} className='font-bold'>{categoria}</option>           
             ))}
-          </select>
+          </select> */}
         </div>
 
         <div className="flex flex-col justify-start w-full">
