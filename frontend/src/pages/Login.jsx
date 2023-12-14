@@ -132,13 +132,13 @@ const Login = () => {
                 </div>
               </div>
 
-              <Link
+              {/* <Link
                 to="/"
                 className="text-xl font-bold "
                 style={{ fontFamily: "SF Pro Display" }}
               >
                 ¿Has olvidado la contraseña?
-              </Link>
+              </Link> */}
 
               <Link
                 to="/auth/register"
