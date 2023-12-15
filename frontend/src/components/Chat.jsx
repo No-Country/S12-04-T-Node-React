@@ -1,26 +1,24 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import response from "../mockup/response.json";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useAuthStore } from "../store/auth";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
-import axios from "axios";
+import { chatService } from "../services/chat";
+import useRecipeStore from "../store/useRecipeStore";
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
+
 
 const Chat = () => {
+
   const username = useAuthStore((state) => state.username);
+  const setRecipe = useRecipeStore((state) => state.setRecipe);
+  const recipe = useRecipeStore((state) => state.recipe);
+  console.log(recipe);
 
   const [ingredients, setIngredients] = useState(null);
-  const [option, setOption] = useState(false);
-
-useEffect (() => {
-  const getData = async () => {
-    const startChat = await axios.get("https://s12-04-t-node-react-production.up.railway.app/start");
-    console.log(startChat);
-  };
-  getData();
-}, [])
-
+  const [option, setOption] = useState(false); 
 
 
   const handleClick = (e) => {
@@ -38,8 +36,11 @@ useEffect (() => {
         .min(3, "Mínimo 3 caracteres")
         .max(100, "Máximo 100 caracteres"),
     }),
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
+      const data = await chatService(values.message)
+      setRecipe(data)
       setIngredients(values.message);
+      Loading.remove();
     },
   });
 
@@ -79,7 +80,7 @@ useEffect (() => {
             <div className="chat-bubble bg-[#F9E9E7] text-slate-800">
               <p> Aqui tienes una receta:</p>
               <br />
-              <p>{response.instructions}</p>
+              <p>{recipe}</p>
             </div>
           </div>
           <div className="flex flex-col gap-16 my-6">

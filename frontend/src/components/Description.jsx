@@ -1,6 +1,6 @@
 import SharedButton from "./SharedButton";
 import { FaHeart } from "react-icons/fa";
-import response from "../mockup/response.json";
+// import response from "../mockup/response.json";
 import useRecipeStore from "../store/useRecipeStore";
 import { useAuthStore } from "../store/auth";
 import { useNavigate } from "react-router-dom";
@@ -11,6 +11,7 @@ const Description = () => {
   const addToFavorites = useRecipeStore((state) => state.addToFavorites);
   const favorites = useRecipeStore((state) => state.favorites);
   console.log(favorites);
+  const recipe = useRecipeStore((state) => state.recipe)
   const modal = useRecipeStore((state) => state.modal);
   const openModal = useRecipeStore((state) => state.openModal)
   const closeModal = useRecipeStore((state) => state.closeModal)
@@ -26,7 +27,7 @@ const Description = () => {
   };
 
   const handleSubmit = () => {
-    addToFavorites({ title: modal.title, category: modal.category, description: response.description });
+    addToFavorites({ title: modal.title, category: modal.category, recipe: recipe });
     closeModal();
   };
 
@@ -38,16 +39,10 @@ const Description = () => {
         alt="plato"
       />
       <div className="flex flex-col gap-4 w-[60%] sm:shadow-2xl sm:shadow-slate-600 sm:rounded-2xl  sm:p-8">
-        <h1 className="text-2xl font-bold">{response.title}</h1>
-        <h4 className="font-semibold">Descripción</h4>
-        <p>{response.description}</p>
-        <h4 className="font-semibold">Ingredientes:</h4>
-        <p>{response.ingredients}</p>
-        <h4 className="font-semibold">Instrucciones</h4>
-        <p>{response.instructions}</p>
+       <p>{recipe}</p>
       </div>
       <div className="flex justify-between gap-8 my-8">
-        <SharedButton text={response.title + ":" + response.instructions} />
+        <SharedButton text={recipe} />
         <button
           onClick={handleAddToFavorites}
           className="btn sm:btn-wide bg-red-600 text-lg text-slate-50"
