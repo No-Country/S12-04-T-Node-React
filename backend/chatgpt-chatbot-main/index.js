@@ -21,10 +21,15 @@ app.post("/message", async (req, res) => {
     const userInput = req.body.message;
 
     try {
-        const messages = chatHistory.map(([role, content]) => ({
-            role,
-            content,
-        }));
+        const messages = chatHistory.map(([role, content]) => {
+            if (content === null) {
+                content = "";
+            }
+            return {
+                role,
+                content,
+            };
+        });
 
         messages.push({ role: "user", content: userInput });
 
@@ -44,6 +49,18 @@ app.post("/message", async (req, res) => {
         res.status(500).json({ error: "Algo salió mal" });
     }
 });
+
+const trainModel = async () => {
+    try {
+        await openai.files.create({
+            file: fs.createReadStream("input.json"),
+            purpose: "fine-tune",
+        });
+        console.log("Entrenamiento iniciado");
+    } catch (error) {
+        console.error(error);
+    }
+};
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Server running on port ${port}`));
