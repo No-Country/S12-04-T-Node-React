@@ -7,6 +7,8 @@ const useRecipeStore = create(
       favorites: [],
       addToFavorites: (recipe) =>
         set((state) => ({ favorites: [...state.favorites, recipe] })),
+        deleteFavorite: (title) =>
+        set((state) => ({  favorites: state.favorites.filter((f) => f.title !== title) })),
     }),
     {
       name: "recipe-store", // Nombre clave para la persistencia

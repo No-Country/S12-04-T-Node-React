@@ -3,7 +3,7 @@ import FavoriteCard from "../components/FavoriteCard";
 
 const Favorites = () => {
   const favorites = useRecipeStore((state) => state.favorites);
-  console.log(favorites);
+  // console.log(favorites);
   // let categorias = ["Desayuno", "Almuerzo","Cena"];
 
   return (
