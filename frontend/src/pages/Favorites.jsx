@@ -31,7 +31,7 @@ const Favorites = () => {
                 key={index}
                 title={favorite.title}
                 category={favorite.category}
-                description={favorite.description}
+                recipe={favorite.recipe}
                 
               />
             ))}

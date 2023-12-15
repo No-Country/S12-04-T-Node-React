@@ -5,6 +5,7 @@ const useRecipeStore = create(
   persist(
     (set) => ({
       favorites: [],
+      recipe: '',
       modal: {
         isOpen: false,
         title: '',
@@ -12,6 +13,7 @@ const useRecipeStore = create(
       },
       addToFavorites: (recipe) =>
         set((state) => ({ favorites: [...state.favorites, recipe] })),
+      setRecipe: (recipe) => set({recipe}),
       openModal: () =>
         set((state) => ({
           modal: { ...state.modal, isOpen: true },

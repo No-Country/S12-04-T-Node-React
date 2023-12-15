@@ -1,4 +1,4 @@
-function FavoriteCard({ title, description, category }) {
+function FavoriteCard({ title, recipe, category }) {
   return (
     <div className="bg-[#D9D9D9] border-rounded rounded ps-7 py-5 mb-4">
       <div>
@@ -6,7 +6,7 @@ function FavoriteCard({ title, description, category }) {
           {title}
         </h2>
         <h2>{category}</h2>
-        <p>{description}</p>
+        <p>{recipe}</p>
       </div>
     </div>
   );
