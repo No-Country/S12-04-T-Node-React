@@ -4,40 +4,30 @@ import response from "../mockup/response.json";
 import useRecipeStore from "../store/useRecipeStore";
 import { useAuthStore } from "../store/auth";
 import { useNavigate } from "react-router-dom";
-import { Confirm } from "notiflix/build/notiflix-confirm-aio";
+import Modal from "./Modal";
 
 const Description = () => {
+
   const addToFavorites = useRecipeStore((state) => state.addToFavorites);
+  const favorites = useRecipeStore((state) => state.favorites);
+  console.log(favorites);
+  const modal = useRecipeStore((state) => state.modal);
+  const openModal = useRecipeStore((state) => state.openModal)
+  const closeModal = useRecipeStore((state) => state.closeModal)
   const token = useAuthStore((state) => state.token);
-  const username = useAuthStore((state) => state.username);
   const navigate = useNavigate();
 
   const handleAddToFavorites = () => {
     if (token) {
-      Confirm.prompt(
-        `Hola ${username}`,
-        "Elige el nombre de la receta!",
-        "",
-        "Guardar",
-        "Cancelar",
-        (data) => {
-          addToFavorites({
-            title: data,
-          });
-          console.log("receta guardada!");
-        },
-        () => {
-          console.log("cancelar!");
-        },
-        {
-          backgroundColor: "#D9D9D9",
-          titleColor: "#000000",
-          okButtonBackground: "#8C1407",
-        }
-      );
+      openModal()
     } else {
       navigate("/auth");
     }
+  };
+
+  const handleSubmit = () => {
+    addToFavorites({ title: modal.title, category: modal.category, description: response.description });
+    closeModal();
   };
 
   return (
@@ -65,7 +55,8 @@ const Description = () => {
           Me gusta
           <FaHeart className="w-5 h-5" />
         </button>
-      </div>
+        </div>
+        <Modal isOpen={modal.isOpen} onSubmit={handleSubmit} />
     </div>
   );
 };
