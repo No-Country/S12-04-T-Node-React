@@ -13,6 +13,10 @@ const useRecipeStore = create(
       },
       addToFavorites: (recipe) =>
         set((state) => ({ favorites: [...state.favorites, recipe] })),
+
+        deleteFavorite: (title) =>
+        set((state) => ({  favorites: state.favorites.filter((f) => f.title !== title) })),
+
       setRecipe: (recipe) => set({recipe}),
       openModal: () =>
         set((state) => ({
@@ -26,6 +30,7 @@ const useRecipeStore = create(
         set((state) => ({ modal: { ...state.modal, title } })),
       setCategory: (category) =>
         set((state) => ({ modal: { ...state.modal, category } })),
+
     }),
     {
       name: "recipe-store",
