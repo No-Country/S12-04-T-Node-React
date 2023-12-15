@@ -1,3 +1,4 @@
+
 import lapiz from "../assets/images/lapiz.svg";
 import tacho from "../assets/images/tacho.svg";
 import useRecipeStore from "../store/useRecipeStore";
@@ -22,11 +23,14 @@ function FavoriteCard({ title, description, categoria }) {
         <img src={lapiz} className="hover:cursor-pointer"  onClick={editRecipe} alt="Editar" />
         <img src={tacho} className="hover:cursor-pointer" onClick={deleteRecipe}  alt="Eliminar" />
       </div>
+
       <div>
         <h2 className="card-title" style={{ textTransform: "capitalize" }}>
           {title}
         </h2>
+
         <p>{description}</p>
+
       </div>
     </div>
   );

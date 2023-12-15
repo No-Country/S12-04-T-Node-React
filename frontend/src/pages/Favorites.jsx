@@ -30,6 +30,8 @@ const Favorites = () => {
               <FavoriteCard
                 key={index}
                 title={favorite.title}
+                category={favorite.category}
+                recipe={favorite.recipe}
                 
               />
             ))}

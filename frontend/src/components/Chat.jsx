@@ -1,17 +1,25 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import {  useState } from "react";
 import response from "../mockup/response.json";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import {useAuthStore} from '../store/auth'
+import { useAuthStore } from "../store/auth";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
+import { chatService } from "../services/chat";
+import useRecipeStore from "../store/useRecipeStore";
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
+
 
 const Chat = () => {
 
-const username = useAuthStore((state) => state.username);
+  const username = useAuthStore((state) => state.username);
+  const setRecipe = useRecipeStore((state) => state.setRecipe);
+  const recipe = useRecipeStore((state) => state.recipe);
+  console.log(recipe);
 
   const [ingredients, setIngredients] = useState(null);
-  const [option, setOption] = useState(false);
+  const [option, setOption] = useState(false); 
+
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -23,11 +31,16 @@ const username = useAuthStore((state) => state.username);
       message: "",
     },
     validationSchema: Yup.object({
-      message: Yup.string().required("Ingresa algún ingrediente!").min(3, "Mínimo 3 caracteres")
-      .max(100, "Máximo 100 caracteres"),
+      message: Yup.string()
+        .required("Ingresa algún ingrediente!")
+        .min(3, "Mínimo 3 caracteres")
+        .max(100, "Máximo 100 caracteres"),
     }),
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
+      const data = await chatService(values.message)
+      setRecipe(data)
       setIngredients(values.message);
+      Loading.remove();
     },
   });
 
@@ -40,7 +53,10 @@ const username = useAuthStore((state) => state.username);
           </div>
         </div>
         <div className="chat-bubble bg-[#F9E9E7] text-slate-800">
-          <p>Hola {username ? username : "invitado"}, dime que ingredientes tienes!</p>
+          <p>
+            Hola {username ? username : "invitado"}, dime que ingredientes
+            tienes!
+          </p>
         </div>
       </div>
       {ingredients && (
@@ -64,7 +80,7 @@ const username = useAuthStore((state) => state.username);
             <div className="chat-bubble bg-[#F9E9E7] text-slate-800">
               <p> Aqui tienes una receta:</p>
               <br />
-              <p>{response.instructions}</p>
+              <p>{recipe}</p>
             </div>
           </div>
           <div className="flex flex-col gap-16 my-6">
@@ -135,7 +151,14 @@ const username = useAuthStore((state) => state.username);
             placeholder="Escribe lo que tienes en la heladera"
             className="input border-2 border-slate-400 rounded-2xl w-full text-sm sm:text-lg"
           />
-          <button type="submit" className={errors.message ? 'hidden' : "absolute right-4 hover:right-2 mt-2 text-slate-500 hover:text-sky-600"}>
+          <button
+            type="submit"
+            className={
+              errors.message
+                ? "hidden"
+                : "absolute right-4 hover:right-2 mt-2 text-slate-500 hover:text-sky-600"
+            }
+          >
             {/* <img src="/enviar.png" alt="button" /> */}
             <MdOutlineArrowForwardIos className="w-8 h-8" />
           </button>
@@ -144,7 +167,9 @@ const username = useAuthStore((state) => state.username);
         ""
       )}
       {errors && errors.message ? (
-        <p className="text-red-500 text-md fixed bottom-4 ms-6">{errors.message}</p>
+        <p className="text-red-500 text-md fixed bottom-4 ms-6">
+          {errors.message}
+        </p>
       ) : (
         ""
       )}
