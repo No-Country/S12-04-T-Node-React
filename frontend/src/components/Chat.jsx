@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import {  useState } from "react";
-import response from "../mockup/response.json";
+// import response from "../mockup/response.json";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useAuthStore } from "../store/auth";
@@ -20,12 +20,6 @@ const Chat = () => {
   const [ingredients, setIngredients] = useState(null);
   const [option, setOption] = useState(false); 
 
-
-  const handleClick = (e) => {
-    e.preventDefault();
-    setOption(true);
-  };
-
   const { handleSubmit, handleChange, values, errors } = useFormik({
     initialValues: {
       message: "",
@@ -43,6 +37,12 @@ const Chat = () => {
       Loading.remove();
     },
   });
+
+  const handleOption = async () => {
+    const data = await chatService(ingredients)
+    setOption(data)
+    Loading.remove();
+  };
 
   return (
     <div className="flex flex-col w-[80rem] sm:w-[60rem] h-screen gap-10 mx-2 font-medium text-lg">
@@ -95,7 +95,7 @@ const Chat = () => {
                 Si
               </Link>
               <button
-                onClick={handleClick}
+                onClick={handleOption}
                 className="btn bg-red-800 hover:bg-slate-800 px-32 col-12 w-[40%] text-slate-50 text-xl"
               >
                 No
@@ -115,7 +115,7 @@ const Chat = () => {
             <div className="chat-bubble bg-[#F9E9E7] text-slate-800">
               <p> Aqui tienes una alternativa:</p>
               <br />
-              <p>{response.optional}</p>
+              <p>{option}</p>
             </div>
           </div>
           <div className="flex flex-col gap-16 my-6">
@@ -130,7 +130,7 @@ const Chat = () => {
                 Si
               </Link>
               <button
-                onClick={handleClick}
+                onClick={handleOption}
                 className="btn bg-red-800 hover:bg-slate-800 px-32 col-12 w-[40%] text-slate-50 text-xl"
               >
                 No

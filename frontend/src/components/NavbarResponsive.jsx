@@ -49,7 +49,7 @@ export default function NavbarResponsive() {
             <div className="animate-fade-right bg-opacity-50 backdrop-filter backdrop-blur-md bg-red-600 shadow-lg shadow-slate-500 w-72 h-[600px] text-white absolute top-20 rounded-md">
               <ul className="flex flex-col gap-8 mt-8 ml-8">
                 <li className="font-medium hover:text-yellow-300">
-                  <Link to="/">Mi perfil</Link>
+                  <Link to="/chat">Chat</Link>
                 </li>
                 <li className="font-medium hover:text-yellow-300">
                   <Link to="/favorites">Mis recetas</Link>

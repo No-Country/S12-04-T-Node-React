@@ -93,13 +93,13 @@ const handleLogout = () => {
                       <Menu.Item>
                         {({ active }) => (
                           <Link
-                            to="/"
+                            to="/chat"
                             className={classNames(
                               active ? "text-red-900 font-medium" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
-                            Mi perfil
+                            Chat
                           </Link>
                         )}
                       </Menu.Item>
