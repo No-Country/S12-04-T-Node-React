@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import {  useState } from "react";
+import { useEffect, useState } from "react";
 // import response from "../mockup/response.json";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -7,18 +7,31 @@ import { useAuthStore } from "../store/auth";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { chatService } from "../services/chat";
 import useRecipeStore from "../store/useRecipeStore";
-import { Loading } from 'notiflix/build/notiflix-loading-aio';
-
+import { Loading } from "notiflix/build/notiflix-loading-aio";
+import axios from "axios";
 
 const Chat = () => {
-
   const username = useAuthStore((state) => state.username);
   const setRecipe = useRecipeStore((state) => state.setRecipe);
   const recipe = useRecipeStore((state) => state.recipe);
-  console.log(recipe);
 
   const [ingredients, setIngredients] = useState(null);
-  const [option, setOption] = useState(false); 
+  const [option, setOption] = useState(false);
+
+  useEffect(() => {
+    const startChat = async () => {
+      try {
+        const res = await axios.get(
+          "https://s12-04-t-node-react-production.up.railway.app/start"
+        );
+        console.log(res.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    startChat();
+  }, []);
 
   const { handleSubmit, handleChange, values, errors } = useFormik({
     initialValues: {
@@ -31,22 +44,22 @@ const Chat = () => {
         .max(100, "Máximo 100 caracteres"),
     }),
     onSubmit: async (values) => {
-      const data = await chatService(values.message)
-      setRecipe(data)
+      const data = await chatService(values.message);
+      setRecipe(data);
       setIngredients(values.message);
       Loading.remove();
     },
   });
 
   const handleOption = async () => {
-    const data = await chatService(ingredients)
-    setOption(data)
+    const data = await chatService(ingredients);
+    setOption(data);
     Loading.remove();
   };
 
   return (
     <div className="flex flex-col w-[80rem] sm:w-[60rem] h-screen gap-10 mx-2 font-medium text-lg">
-      <div className="chat chat-start mt-24">
+      <div className="chat chat-start mt-32">
         <div className="chat-image avatar">
           <div className="w-16 rounded-full">
             <img alt="avatar" src="bot.png" />
