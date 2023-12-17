@@ -1,6 +1,7 @@
 import { Navigate, Outlet } from 'react-router-dom'
 import {useAuthStore} from '../store/auth'
 import { Navbar } from './Navbar'
+import BackButton from './BackButton'
 
 const LayoutPrivate = () => {
 
@@ -10,6 +11,7 @@ const LayoutPrivate = () => {
     <div>{token ? (
       <div className="container-fluid relative">
         <Navbar/>
+        <BackButton />
         <Outlet /> 
       </div>
     ) : <Navigate to="/auth" />}</div>
