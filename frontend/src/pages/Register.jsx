@@ -73,7 +73,9 @@ const Register = () => {
 
   return (
     <div className="flex flex-col mt-8  justify-center items-center ">
+      <Link to={"/"}>
       <img src={Group8} alt="logo" className="w-[11rem] mx-auto " />
+      </Link>
       <h1 className="text-4xl mt-4">BIENVENIDO</h1>
 
       <div className="flex flex-col lg:w-2/5 w-full p-4  gap-5 justify-center items-center scale-90">

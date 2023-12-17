@@ -1,8 +1,8 @@
 /* Importaciones de bibliotecas terceros */
 import { Link } from "react-router-dom";
 import { Disclosure, Menu } from "@headlessui/react";
-import {useAuthStore} from '../store/auth'
-import {useNavigate} from 'react-router-dom'
+import { useAuthStore } from "../store/auth";
+import { useNavigate } from "react-router-dom";
 
 /* Importaciones de imágenes */
 import hatLogo from "../assets/images/hat-logo.svg";
@@ -15,16 +15,15 @@ function classNames(...classes) {
 
 /* ||| COMPONENTE NAVBAR ||| */
 export const Navbar = () => {
+  const logout = useAuthStore((state) => state.logout);
+  const token = useAuthStore((state) => state.token);
+  const avatar = useAuthStore((state) => state.avatar);
+  const navigate = useNavigate();
 
-const logout = useAuthStore(state => state.logout)
-const token = useAuthStore(state => state.token)
-const avatar = useAuthStore(state => state.avatar)
-const navigate = useNavigate()
-
-const handleLogout = () => {
-  logout();
-  navigate("/")
-}
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
 
   /* || JSX || */
   return (
@@ -59,15 +58,13 @@ const handleLogout = () => {
                       <Link to="/auth">
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">Open user menu</span>
-                      {
-                        !token && (
+                        {!token && (
                           <img
-                          className="h-12 w-12 rounded-full"
-                          src={userLogo}
-                          alt="avatar"
-                        />
-                        )
-                      }
+                            className="h-12 w-12 rounded-full"
+                            src={userLogo}
+                            alt="avatar"
+                          />
+                        )}
                       </Link>
                     </Menu.Button>
                   </div>
@@ -75,61 +72,61 @@ const handleLogout = () => {
                 {/* Usuario conectado */}
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                      <span className="absolute -inset-1.5" />
-                      <span className="sr-only">Open user menu</span>
-                    {
-                      token && (
-                        <img
-                        className="h-12 w-12 rounded-full"
-                        src= {avatar}
-                        alt="avatar"
-                      />
-                      )
-                    }
-                    </Menu.Button>
+                    {token && (
+                      <Menu.Button className="relative flex rounded-full bg-slate-100 text-sm ring-2 ring-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                        <span className="absolute -inset-1.5" />
+                        <span className="sr-only">Open user menu</span>
+                        {token && (
+                          <img
+                            className="h-14 w-14 rounded-full"
+                            src={avatar.length === 1 ? "/bot.png" : avatar}
+                            alt="avatar"
+                          />
+                        )}
+                      </Menu.Button>
+                    )}
                   </div>
-                    <Menu.Items className="animate-flip-down absolute hidden sm:block right-0 z-10 mt-6 w-48 origin-top-right rounded-md bg-slate-50 py-1 ring-1 ring-black ring-opacity-5 focus:outline-none border border-gray-400">
-                      <Menu.Item>
-                        {({ active }) => (
-                          <Link
-                            to="/chat"
-                            className={classNames(
-                              active ? "text-red-900 font-medium" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Chat
-                          </Link>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <Link
-                            to="/favorites"
-                            className={classNames(
-                              active ? "text-red-900 font-medium" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Mis recetas
-                          </Link>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <button
-                            onClick={handleLogout}
-                            className={classNames(
-                              active ? "text-red-900 font-medium" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Cerrar sesión
-                          </button>
-                        )}
-                      </Menu.Item>
-                    </Menu.Items>
+                  <Menu.Items className="animate-flip-down absolute hidden sm:block right-0 z-10 mt-6 w-48 origin-top-right rounded-md bg-slate-50 py-1 ring-1 ring-black ring-opacity-5 focus:outline-none border border-gray-400">
+                    <Menu.Item>
+                      {({ active }) => (
+                        <Link
+                          to="/chat"
+                          className={classNames(
+                            active ? "text-red-900 font-medium" : "",
+                            "block px-4 py-2 text-sm text-gray-700"
+                          )}
+                        >
+                          Chat
+                        </Link>
+                      )}
+                    </Menu.Item>
+                    <Menu.Item>
+                      {({ active }) => (
+                        <Link
+                          to="/favorites"
+                          className={classNames(
+                            active ? "text-red-900 font-medium" : "",
+                            "block px-4 py-2 text-sm text-gray-700"
+                          )}
+                        >
+                          Mis recetas
+                        </Link>
+                      )}
+                    </Menu.Item>
+                    <Menu.Item>
+                      {({ active }) => (
+                        <button
+                          onClick={handleLogout}
+                          className={classNames(
+                            active ? "text-red-900 font-medium" : "",
+                            "block px-4 py-2 text-sm text-gray-700"
+                          )}
+                        >
+                          Cerrar sesión
+                        </button>
+                      )}
+                    </Menu.Item>
+                  </Menu.Items>
                 </Menu>
               </div>
             </div>
