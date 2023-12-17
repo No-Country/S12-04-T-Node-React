@@ -81,7 +81,9 @@ const Login = () => {
   return (
     <>
       <div className=" h-screen flex-col items-center justify-center py-5">
+        <Link to={"/"}>
         <img src={img} alt="img" className="w-[11rem] mx-auto " />
+        </Link>
         <h1 className="text-3xl font-normal text-center my-4">BIENVENIDO</h1>
         <div className="flex flex-col sm:w-1/2 mx-auto">
           <Formik
