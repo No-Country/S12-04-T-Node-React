@@ -8,7 +8,8 @@ const Layout = () => {
 
   return (
     <div className="container-fluid relative">
-      <BackButton />
+      
+      {location.pathname === "/" ? "" : <BackButton />}
       {location.pathname === "/" ? <NavbarResponsive /> : <Navbar />}
       <Outlet />
 

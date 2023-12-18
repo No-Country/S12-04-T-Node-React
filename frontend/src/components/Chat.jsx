@@ -9,6 +9,8 @@ import { chatService } from "../services/chat";
 import useRecipeStore from "../store/useRecipeStore";
 import { Loading } from "notiflix/build/notiflix-loading-aio";
 import axios from "axios";
+import ScrollButton from "./ScrollButton";
+
 
 const Chat = () => {
   const username = useAuthStore((state) => state.username);
@@ -39,7 +41,7 @@ const Chat = () => {
     },
     validationSchema: Yup.object({
       message: Yup.string()
-        .required("Ingresa algún ingrediente!")
+        .required("¡Ingresa algún ingrediente!")
         .min(3, "Mínimo 3 caracteres")
         .max(100, "Máximo 100 caracteres"),
     }),
@@ -58,8 +60,8 @@ const Chat = () => {
   };
 
   return (
-    <div className="flex flex-col w-[80rem] sm:w-[60rem] h-screen gap-10 mx-2 font-medium text-lg">
-      <div className="chat chat-start mt-32">
+    <div className="flex flex-col w-full md:w-1/2 mx-4 sm:mx-32 h-screen gap-10 font-medium text-lg">
+      <div className="chat chat-start mt-40">
         <div className="chat-image avatar">
           <div className="w-16 rounded-full">
             <img alt="avatar" src="bot.png" />
@@ -67,11 +69,12 @@ const Chat = () => {
         </div>
         <div className="chat-bubble bg-[#F9E9E7] text-slate-800">
           <p>
-            Hola {username ? username : "invitado"}, dime que ingredientes
-            tienes!
+            Hola {username ? username : "invitado"}, dime: ¿que ingredientes
+            tienes?
           </p>
         </div>
       </div>
+      <ScrollButton />
       {ingredients && (
         <div className="flex flex-col">
           <div className="chat chat-end">
@@ -155,13 +158,13 @@ const Chat = () => {
       {!ingredients ? (
         <form
           onSubmit={handleSubmit}
-          className="flex gap-2 w-[90%] sm:w-[60%] mx-4 fixed bottom-12"
+          className="flex gap-2 w-5/6 sm:w-1/2 mx-4 fixed bottom-12"
         >
           <input
             onChange={handleChange}
             name="message"
             type="text"
-            placeholder="Escribe lo que tienes en la heladera"
+            placeholder="Ingresa al menos 3 ingredientes"
             className="input border-2 border-slate-400 rounded-2xl w-full text-sm sm:text-lg"
           />
           <button
