@@ -31,7 +31,7 @@ const Favorites = () => {
   }, []);  
 
   return (
-    <div className="max-w-screen-2xl mx-auto px-4">
+    <div className="max-w-screen-2xl mx-48 px-4">
       <header className="flex flex-col justify-center items-center pt-32 gap-20">
         {favorites.length > 0 ? (
           <h1 className="text-6xl font-bold">Recetas guardadas</h1>

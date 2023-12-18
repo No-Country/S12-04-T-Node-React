@@ -2,7 +2,6 @@ import { useState } from "react";
 import * as yup from "yup";
 import { Formik, Form, Field } from "formik";
 import { useNavigate, Link } from "react-router-dom";
-import Group8 from "../assets/images/Group8.svg";
 import { Report } from "notiflix/build/notiflix-report-aio";
 import { sendNewUser } from "../services/register";
 
@@ -75,7 +74,7 @@ const Register = () => {
     <div className="flex flex-col mt-8  justify-center items-center ">
       <div className="w-[11rem] mx-auto">
         <Link to={"/"}>
-          <img src={Group8} alt="logo" />
+          <img src="/cookGpt.png" alt="logo" />
         </Link>
       </div>
       <h1 className="text-4xl mt-4">BIENVENIDO</h1>

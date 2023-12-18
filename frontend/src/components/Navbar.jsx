@@ -45,7 +45,7 @@ export const Navbar = () => {
                         src={hatLogo}
                         alt="Logo App"
                       />
-                      <h1 className="text-white xl:text-lg">Chef GPT</h1>
+                      <h1 className="text-white xl:text-lg">Cook GPT</h1>
                     </Link>
                   </button>
                 </div>

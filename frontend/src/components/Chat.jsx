@@ -74,9 +74,10 @@ const Chat = () => {
           </p>
         </div>
       </div>
-      <ScrollButton />
+      
       {ingredients && (
         <div className="flex flex-col">
+          <ScrollButton />
           <div className="chat chat-end">
             <div className="chat-image avatar">
               <div className="w-12 rounded-full">

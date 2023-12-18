@@ -1,5 +1,4 @@
 import { useState } from "react";
-import img from "../assets/images/Group8.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/auth";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -42,7 +41,6 @@ const Login = () => {
     return errorsList;
   };
   const handleData = async () => {
-    // e.preventDefault();
     Loading.dots();
     if (Object.keys(validar()).length === 0) {
       await fetch("https://chefgtp.onrender.com/api/auth", {
@@ -54,7 +52,6 @@ const Login = () => {
       })
         .then((response) => response.json())
         .then((response) => {
-          console.log(response);
           if (response.errors) {
             Report.failure(
               "Email / Contraseña incorrectos",
@@ -81,10 +78,10 @@ const Login = () => {
 
   return (
     <>
-      <div className="h-screen flex-col items-center justify-center py-5">
+      <div className="h-screen flex-col items-center justify-center py-5 mt-32">
         <div className="w-[11rem] mx-auto">
           <Link to={"/"}>
-            <img src={img} alt="img" />
+            <img src="/cookGpt.png" alt="img" />
           </Link>
         </div>
         <h1 className="text-3xl font-normal text-center my-4">BIENVENIDO</h1>

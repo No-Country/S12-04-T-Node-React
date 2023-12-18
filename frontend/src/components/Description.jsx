@@ -40,7 +40,7 @@ const Description = () => {
         src="/chefGpt.gif"
         alt="plato"
       />
-      <div className="flex flex-col gap-4 w-[40%] sm:shadow-2xl sm:shadow-slate-600 sm:rounded-2xl  sm:p-8">
+      <div className="flex flex-col gap-4 w-3/4 sm:shadow-2xl sm:shadow-slate-600 sm:rounded-2xl  sm:p-8">
         <p>{recipe}</p>
       </div>
       <div className="flex justify-between gap-8 my-8">
