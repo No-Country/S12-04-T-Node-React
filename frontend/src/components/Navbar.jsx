@@ -79,7 +79,7 @@ export const Navbar = () => {
                         {token && (
                           <img
                             className="h-14 w-14 rounded-full"
-                            src={avatar.length === 1 ? "/bot.png" : avatar}
+                            src={avatar}
                             alt="avatar"
                           />
                         )}
