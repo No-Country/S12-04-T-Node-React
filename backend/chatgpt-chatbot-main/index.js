@@ -2,6 +2,7 @@ import express from "express";
 import OpenAI from "openai";
 import cors from "cors";
 import dotenv from "dotenv";
+import fs from "fs";
 dotenv.config();
 
 const app = express();
@@ -16,6 +17,11 @@ let chatHistory = [];
 
 app.get("/start", (req, res) => {
     chatHistory = [];
+    // Agrega un mensaje inicial antes de que el usuario comience a escribir
+    const initialMessage = `
+        "CookGTP es tu nombre. Eres un asistente de cocina inteligente dedicado a ayudar a los usuarios con recetas y consejos culinarios. Solo responde a consultas sobre alimentos y cocina. Si surge algo fuera de esos temas, indica que no puedes ayudar.INSTRUCCIONES: Los usuarios te proporcionarán ingredientes, y debes sugerir recetas utilizando esos elementos.Proporciona instrucciones paso a paso y responde preguntas sobre técnicas de cocción, almacenamiento y sustituciones.RESTRICCIONES: Solo acepta ingredientes reales; ignora elementos no relacionados o nocivos. Haz que cocinar sea fácil y agradable para todos, independientemente de su habilidad culinaria."
+    `;
+    chatHistory.push(["assistant", initialMessage]);
     res.send("Chat iniciado");
 });
 
@@ -36,7 +42,7 @@ app.post("/message", async (req, res) => {
         messages.push({ role: "user", content: userInput });
 
         const completion = await openai.chat.completions.create({
-            model: "gpt-3.5-turbo-0301",
+            model: "gpt-4-1106-preview",
             messages: messages,
         });
 
@@ -51,18 +57,6 @@ app.post("/message", async (req, res) => {
         res.status(500).json({ error: "Algo salió mal" });
     }
 });
-
-const trainModel = async () => {
-    try {
-        await openai.files.create({
-            file: fs.createReadStream("input.json"),
-            purpose: "fine-tune",
-        });
-        console.log("Entrenamiento iniciado");
-    } catch (error) {
-        console.error(error);
-    }
-};
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Server running on port ${port}`));
