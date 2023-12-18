@@ -6,7 +6,7 @@
 - Carlos Santillán
  
 ## Frontend 
-- Walter G
+- Walter Gimenez
 - José Cardozo
 - Verónica Valdez
 - Enuel Monzón
