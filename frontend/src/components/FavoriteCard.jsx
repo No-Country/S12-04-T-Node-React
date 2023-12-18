@@ -1,4 +1,4 @@
-import lapiz from "../assets/images/lapiz.svg";
+// import lapiz from "../assets/images/lapiz.svg";
 import tacho from "../assets/images/tacho.svg";
 import useRecipeStore from "../store/useRecipeStore";
 
@@ -7,7 +7,7 @@ function FavoriteCard({ title, recipe, category }) {
   function deleteRecipe() {
     deleteFavorite(title);
   }
-  function editRecipe() {}
+  // function editRecipe() {}
 
   return (
     <div
@@ -17,12 +17,12 @@ function FavoriteCard({ title, recipe, category }) {
       }
     >
       <div className="flex absolute top-5 right-5 gap-5">
-        <img
+        {/* <img
           src={lapiz}
           className="hover:cursor-pointer"
           onClick={editRecipe}
           alt="Editar"
-        />
+        /> */}
         <img
           src={tacho}
           className="hover:cursor-pointer"
