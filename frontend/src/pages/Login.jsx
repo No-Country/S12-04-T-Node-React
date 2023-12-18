@@ -107,12 +107,11 @@ const Login = () => {
                 }
               ></Field>
               <ErrorMessage name="email" />
-
               <div className="relative">
                 <Field
                   name="password"
                   type={showPassword ? "text" : "password"}
-                  placeholder="Password..."
+                  placeholder="Contraseña..."
                   className="inputRegister mx-auto w-1/2"
                   autoComplete="on"
                   value={dataUser.password}
@@ -121,7 +120,6 @@ const Login = () => {
                   }
                 ></Field>
                 <ErrorMessage name="password" className="text-red-600" />
-
                 <div className="absolute z-2 top-4 right-5">
                   <img
                     src={showPassword ? eyeOpen : eyeClose}
@@ -131,7 +129,6 @@ const Login = () => {
                   />
                 </div>
               </div>
-
               {/* <Link
                 to="/"
                 className="text-xl font-bold "
@@ -139,7 +136,6 @@ const Login = () => {
               >
                 ¿Has olvidado la contraseña?
               </Link> */}
-
               <Link
                 to="/auth/register"
                 className="text-xl btn btn-outline hover:bg-[#6cc48ed3] my-5 text-dark-900 border-amber-900  rounded "
@@ -149,7 +145,6 @@ const Login = () => {
               >
                 Registrate
               </Link>
-
               <button
                 type="submit"
                 className="btn btn-amber-900  text-white text-xl rounded "
