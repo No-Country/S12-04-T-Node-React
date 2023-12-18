@@ -1,19 +1,17 @@
-import { useState} from "react";
+import { useState } from "react";
 import img from "../assets/images/Group8.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/auth";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import eyeClose from "../assets/images/eyeClose.svg";
 import eyeOpen from "../assets/images/eyeOpen.svg";
-import { Loading } from 'notiflix/build/notiflix-loading-aio';
+import { Loading } from "notiflix/build/notiflix-loading-aio";
 import { Report } from "notiflix/build/notiflix-report-aio";
 
 const initialValues = {
   email: "",
   password: "",
 };
-
-
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -57,22 +55,25 @@ const Login = () => {
         .then((response) => response.json())
         .then((response) => {
           console.log(response);
-          if(response.errors) {
+          if (response.errors) {
             Report.failure(
-              'Email / Contraseña incorrectos',
-              'Volver a intentar',
+              "Email / Contraseña incorrectos",
+              "Volver a intentar"
             );
             Loading.remove();
           }
-          Report.success(`Bienvenido ${response.data.username}`, 'Sesión iniciada');
-          Loading.remove(); 
+          Report.success(
+            `Bienvenido ${response.data.username}`,
+            "Sesión iniciada"
+          );
+          Loading.remove();
           setUid(response.data.uid);
           setToken(response.data.token);
           setUsername(response.data.username);
           setAvatar(response.data.avatar);
           navigate("/chat");
         })
-        .catch((error) => console.log(error))
+        .catch((error) => console.log(error));
     } else {
       alert("Verifique los Campos");
     }
@@ -80,16 +81,18 @@ const Login = () => {
 
   return (
     <>
-      <div className=" h-screen flex-col items-center justify-center py-5">
-        <Link to={"/"}>
-        <img src={img} alt="img" className="w-[11rem] mx-auto " />
-        </Link>
+      <div className="h-screen flex-col items-center justify-center py-5">
+        <div className="w-[11rem] mx-auto">
+          <Link to={"/"}>
+            <img src={img} alt="img" />
+          </Link>
+        </div>
         <h1 className="text-3xl font-normal text-center my-4">BIENVENIDO</h1>
         <div className="flex flex-col sm:w-1/2 mx-auto">
           <Formik
-          onSubmit={handleData}
-          initialValues={initialValues}
-          validate={validar}
+            onSubmit={handleData}
+            initialValues={initialValues}
+            validate={validar}
           >
             <Form className="flex flex-col gap-1">
               <Field
@@ -102,11 +105,9 @@ const Login = () => {
                 onChange={(e) =>
                   setDataUser({ ...dataUser, email: e.target.value })
                 }
-              >
-              </Field>
+              ></Field>
               <ErrorMessage name="email" />
-              
-              
+
               <div className="relative">
                 <Field
                   name="password"
@@ -118,12 +119,9 @@ const Login = () => {
                   onChange={(e) =>
                     setDataUser({ ...dataUser, password: e.target.value })
                   }
-                >
-                </Field>
-                <ErrorMessage name="password" className="text-red-600" /> 
-                
-                
-                
+                ></Field>
+                <ErrorMessage name="password" className="text-red-600" />
+
                 <div className="absolute z-2 top-4 right-5">
                   <img
                     src={showPassword ? eyeOpen : eyeClose}
@@ -159,7 +157,6 @@ const Login = () => {
               >
                 Iniciar Sesion
               </button>
-
             </Form>
           </Formik>
         </div>
