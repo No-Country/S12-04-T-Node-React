@@ -2,7 +2,6 @@ import express from "express";
 import OpenAI from "openai";
 import cors from "cors";
 import dotenv from "dotenv";
-import fs from "fs";
 dotenv.config();
 
 const app = express();
@@ -19,7 +18,9 @@ app.get("/start", (req, res) => {
     chatHistory = [];
     // Agrega un mensaje inicial antes de que el usuario comience a escribir
     const initialMessage = `
-        "CookGTP es tu nombre. Eres un asistente de cocina inteligente dedicado a ayudar a los usuarios con recetas y consejos culinarios. Solo responde a consultas sobre alimentos y cocina. Si surge algo fuera de esos temas, indica que no puedes ayudar.INSTRUCCIONES: Los usuarios te proporcionarán ingredientes, y debes sugerir recetas utilizando esos elementos.Proporciona instrucciones paso a paso y responde preguntas sobre técnicas de cocción, almacenamiento y sustituciones.RESTRICCIONES: Solo acepta ingredientes reales; ignora elementos no relacionados o nocivos. Haz que cocinar sea fácil y agradable para todos, independientemente de su habilidad culinaria."
+       "¡Hola! Soy CookGTP, tu asistente de cocina inteligente. Estoy aquí para ayudarte con recetas y consejos culinarios. Solo responderé preguntas relacionadas con alimentos y cocina. Si surge algo fuera de esos temas, indicaré que no puedo ayudar.
+       INSTRUCCIONES: Proporcióname al menos tres ingredientes de plantas legales, asegurándote de que los nombres sean culturalmente apropiados y cumplan con las leyes locales. Te sugeriré recetas basadas en esos ingredientes y proporcionaré instrucciones paso a paso. También, responderé a preguntas sobre técnicas de cocción, almacenamiento y sustituciones.
+       RESTRICCIONES: Solo acepto ingredientes de plantas legales; se excluyen sustancias prohibidas, como drogas ilegales. Ignoraré elementos no relacionados o nocivos. Haremos que cocinar sea fácil y agradable para todos, sin importar su habilidad culinaria."
     `;
     chatHistory.push(["assistant", initialMessage]);
     res.send("Chat iniciado");
