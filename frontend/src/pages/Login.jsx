@@ -78,7 +78,7 @@ const Login = () => {
 
   return (
     <>
-      <div className="h-screen flex-col items-center justify-center py-5 mt-32">
+      <div className="h-screen flex-col items-center justify-center pt-32">
         <div className="w-[11rem] mx-auto">
           <Link to={"/"}>
             <img src="/cookGpt.png" alt="img" />

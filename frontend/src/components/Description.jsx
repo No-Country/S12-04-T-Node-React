@@ -3,7 +3,7 @@ import { FaHeart } from "react-icons/fa";
 // import response from "../mockup/response.json";
 import useRecipeStore from "../store/useRecipeStore";
 import { useAuthStore } from "../store/auth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Modal from "./Modal";
 
 const Description = () => {
@@ -36,23 +36,32 @@ const Description = () => {
   return (
     <div className="flex flex-col gap-4 items-center bg-[#F8FAFA]">
       <img
-        className="w-[50%] sm:w-[15%] mt-24"
+        className="w-[50%] sm:w-[15%] mt-24 animate-bounce"
         src="/chefGpt.gif"
         alt="plato"
       />
-      <div className="flex flex-col gap-4 w-3/4 sm:shadow-2xl sm:shadow-slate-600 sm:rounded-2xl  sm:p-8">
-        <p>{recipe}</p>
+      <div className="flex flex-col gap-4 bg-[#F9E9E7] text-slate-800 w-5/6 sm:shadow-2xl sm:shadow-slate-600 rounded-2xl p-4 sm:p-8">
+        <h1 className="text-2xl text-center">Tu receta</h1>
+        <p className="font-sans font-semibold">{recipe}</p>
       </div>
-      <div className="flex justify-between gap-8 my-8">
+      <div className="flex justify-between gap-8 mt-8 mb-4">
         <SharedButton text={recipe} />
         <button
           onClick={handleAddToFavorites}
+          disabled={!token}
           className="btn sm:btn-wide bg-red-600 text-lg text-slate-50"
         >
           Me gusta
           <FaHeart className="w-5 h-5" />
         </button>
       </div>
+      {
+        !token && (
+          <span className="my-4 font-semibold text-sm sm:text-lg">
+          * Para guardar tus recetas favoritas  <Link className="text-green-600 hover:text-green-400" to="/auth">inicia sesión</Link>
+          </span>
+        )
+      }
       <Modal isOpen={modal.isOpen} onSubmit={handleSubmit} />
     </div>
   );

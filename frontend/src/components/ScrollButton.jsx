@@ -10,7 +10,7 @@ const ScrollButton = () => {
 
   return (
     <div>
-      <button onClick={handleScroll} className="hidden sm:block animate-fade-down animate-infinite fixed right-16 bottom-16 text-red-800">
+      <button onClick={handleScroll} className="hidden sm:block animate-fade-down animate-infinite fixed right-16 bottom-16 text-blue-600">
         <FaChevronDown className="w-12 h-12" />
       </button>
     </div>

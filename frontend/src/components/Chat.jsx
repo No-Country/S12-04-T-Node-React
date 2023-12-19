@@ -41,9 +41,15 @@ const Chat = () => {
     },
     validationSchema: Yup.object({
       message: Yup.string()
-        .required("¡Ingresa algún ingrediente!")
-        .min(3, "Mínimo 3 caracteres")
-        .max(100, "Máximo 100 caracteres"),
+        .required("Ingresa al menos 3 ingredientes")
+        .test(
+          ' Verifica que haya al menos tres ingredientes separados por comas',
+          "Ingresa al menos tres ingredientes separados por comas",
+          (value) => {       
+            const ingredients = value.split(',').map(ingredient => ingredient.trim());
+            return ingredients.length >= 3 && ingredients.every(ingredient => ingredient !== '');
+          }
+        )
     }),
     onSubmit: async (values) => {
       const data = await chatService(values.message);
