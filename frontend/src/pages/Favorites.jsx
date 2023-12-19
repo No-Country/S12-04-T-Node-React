@@ -13,19 +13,37 @@ const Favorites = () => {
   function handleCategory(e) {
     // console.log(e.target.value)
     // setSeleccionadas([...seleccionadas,null])
-    // for(var favory of favorites){
-    //     if(favory.category === e.target.value){
-    //       setSeleccionadas([...seleccionadas,favory])        }
-    //       console.log(favory)
-    //     }
-    const select = favorites.filter(favory => favory.category === e.target.value && favory )
-    if (e.target.value === "Todas") {      
-      setAll(favorites);
-    }else{       
-      setAll(select);
+
+        switch (e.target.value) {
+          case "Todas":
+            setAll(favorites);
+            break;
+          case 'Desayuno':
+            setAll(favorites.filter(favory => favory.category === 'Desayuno' && favory));
+            
+            break;
+          case 'Almuerzo':
+            setAll(favorites.filter(favory => favory.category === 'Almuerzo' && favory));
+            break;
+          case 'Cena':
+            setAll(favorites.filter(favory => favory.category === 'Cena' && favory));
+            break;
+          case 'Merienda':
+            setAll(favorites.filter(favory => favory.category === 'Merienda' && favory));
+            break;
+          default:
+            return 'No hay recetas guardadas en esta categoria';  
+        }
+          
     }
+  //   if (e.target.value === "Todas") {      
+  //     setAll(favorites);
+  //   }else{       
+  //     const select = favorites.filter(favory => favory.category === e.target.value && favory )
+  //     setAll(select);
+  //   }
     
-  }
+  
   useEffect(() => {
       setAll(favorites);
   }, []);  
@@ -49,7 +67,7 @@ const Favorites = () => {
         </div>
 
         {
-          all.length === 0? 'No hay recetas guardadas': all.map((favory, index) => (
+        all.length === 0? 'No hay recetas guardadas': all.map((favory, index) => (
               <FavoriteCard
                   key={index}
                   title={favory.title}
@@ -57,7 +75,6 @@ const Favorites = () => {
                   recipe={favory.recipe}
                 />
             ))
-          
           }
         
       </header>

@@ -1,12 +1,13 @@
 // import lapiz from "../assets/images/lapiz.svg";
-// import tacho from "../assets/images/tacho.svg";
-// import useRecipeStore from "../store/useRecipeStore";
+import tacho from "../assets/images/tacho.svg";
+import useRecipeStore from "../store/useRecipeStore";
 
 function FavoriteCard({ title, recipe, category }) {
-  // const deleteFavorite = useRecipeStore((state) => state.deleteFavorite);
-  // function deleteRecipe() {
-  //   deleteFavorite(title);
-  // }
+  const deleteFavorite = useRecipeStore((state) => state.deleteFavorite);
+  function deleteRecipe(e) {
+    console.log(e.target.parentNode.parentNode.remove());
+    deleteFavorite(title);
+  }
   // function editRecipe() {}
 
   return (
@@ -20,15 +21,15 @@ function FavoriteCard({ title, recipe, category }) {
         {/* <img
           src={lapiz}
           className="hover:cursor-pointer"
-          onClick={editRecipe}
+          // onClick={editRecipe}
           alt="Editar"
-        /> */}
-        {/* <img
+        />  */}
+         <img
           src={tacho}
           className="hover:cursor-pointer"
           onClick={deleteRecipe}
           alt="Eliminar"
-        /> */}
+        />
       </div>
 
       <div>
