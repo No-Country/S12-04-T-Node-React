@@ -41,10 +41,10 @@ const Chat = () => {
     },
     validationSchema: Yup.object({
       message: Yup.string()
-        .required("Ingresa al menos 3 ingredientes")
+        .required("Ingresa al menos 3 ingredientes separados con una coma")
         .test(
           ' Verifica que haya al menos tres ingredientes separados por comas',
-          "Ingresa al menos tres ingredientes separados por comas",
+          "Ingresa al menos tres ingredientes (ej: tomate, papa, cebolla)",
           (value) => {       
             const ingredients = value.split(',').map(ingredient => ingredient.trim());
             return ingredients.length >= 3 && ingredients.every(ingredient => ingredient !== '');
@@ -172,14 +172,14 @@ const Chat = () => {
             name="message"
             type="text"
             placeholder="Ingresa al menos 3 ingredientes"
-            className="input border-2 border-slate-400 rounded-2xl w-full text-sm sm:text-lg"
+            className="input border-2 border-red-800 rounded-2xl w-full text-sm sm:text-lg"
           />
           <button
             type="submit"
             className={
               errors.message
                 ? "hidden"
-                : "absolute right-4 hover:right-2 mt-2 text-slate-500 hover:text-sky-600"
+                : "absolute right-4 animate-fade-right animate-infinite mt-2 text-red-800"
             }
           >
             {/* <img src="/enviar.png" alt="button" /> */}
@@ -190,7 +190,7 @@ const Chat = () => {
         ""
       )}
       {errors && errors.message ? (
-        <p className="text-red-500 text-md fixed bottom-4 ms-6">
+        <p className="text-red-500 text-sm sm:text-lg fixed bottom-4 ms-6">
           {errors.message}
         </p>
       ) : (
