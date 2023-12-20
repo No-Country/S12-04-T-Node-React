@@ -19,7 +19,11 @@ const Register = () => {
     username: yup
       .string()
       .required("Campo obligatorio")
-      .min(5, "Nombre de usuario debe de ser minimo 5 caracteres"),
+      .min(5, "Nombre de usuario debe de ser minimo 5 caracteres")
+      .matches(
+        /^([A-Za-z\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff\s]*)$/gi,
+        "El nombre de usuario solo puede contener caracteres alfabeticos."
+      ),
     email: yup
       .string()
       .required("Campo obligatorio")
