@@ -14,7 +14,7 @@ function FavoriteCard({ title, recipe, category }) {
     <div
       className={
         category +
-        " bg-[#D9D9D9] border-rounded rounded ps-7 py-5 mb-4 relative"
+        " bg-[#F9E9E7] border-rounded rounded ps-7 py-5 mb-4 relative"
       }
     >
       <div className="flex absolute top-5 right-5 gap-5">
