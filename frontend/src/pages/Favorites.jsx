@@ -57,7 +57,7 @@ const Favorites = () => {
           <h1 className="text-6xl font-bold">No tienes recetas guardadas</h1>
         )}
         <div className=" w-full">
-          <select className="bg-[#D9D9D9] border  border-[#8C1407] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-3" onChange={handleCategory}>
+          <select className="bg-[#F9E9E7] border  border-[#8C1407] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-3" onChange={handleCategory}>
             <option  disabled defaultValue="" selected className='font-bold' >Categorias
             </option>
             {categorias.map((categoria,index) => (
