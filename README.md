@@ -1,4 +1,22 @@
+# Cook GPT
+
+
+![](./frontend/public/demo.png)
+
+## Proyecto de recetas con IA
+
+Este proyecto es una aplicación de recetas que utiliza IA para crear recetas personalizadas para los usuarios. El usuario puede ingresar los ingredientes que tiene disponibles y el bot "Goofy" le creará una receta que puede compartir por whatsaap y guardar en sus favoritos si tiene una cuenta.
+
+El proyecto está desarrollado con Node.js y React.
+
+Prueba la la aplicación aquí: [Cook GPT](https://chefgpt-lnox.onrender.com/)
+
+
+
 # Equipo NC S12-04-T-Node-React
+
+## Project Manager 
+- Roxana Viloria
  
 ## Backend 
 - Radhames Capellan
@@ -6,10 +24,8 @@
 - Carlos Santillán
  
 ## Frontend 
-- Walter G
+- Walter Gimenez
 - José Cardozo
-- Verónica Valdez
-- Enuel Monzón
 - Ariel Martinez
  
 ## QA 
@@ -18,7 +34,4 @@
  
 ## UI/UX 
 - Martina Coria
-- Santiago B.
  
-## Project Manager 
-- Roxana Viloria

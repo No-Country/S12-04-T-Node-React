@@ -1,36 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Ver fuentes */
 
-
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: black;
-  background-color: #FFFFFF;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Paleta de colores */
+  --color-red-strong: #bb1b09;
+  --color-red-dark: #8d2607;
+  --color-primary: #000fff;
+  --color-secondary: #0b0a0a;
+
+  /* Tamaño predeterminado */
+  --font-size-medium: 16px;
+
+  /* Fuentes ejemplo */
+  --font-primary: "Itim", cursive;
+  --font-secondary: "Montserrat", sans-serif;
+  --font-script: "Dancing Script", cursive;
+
+  /* Altura de líneas  y grosor de letra */
+  --line-height-medium: 1.5;
+  --font-weight-regular: 400;
+
+  /* Sombras de elementos */
+  --box-shadow-dark: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  --box-shadow-light: 10px 10px 5px 0px rgba(0, 0, 0, 0.45);
 }
 
 * {
-  box-sizing:border-box;
+  box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
-  display: flex;
   min-width: 320px;
   min-height: 100vh;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
+body {
+  font-family: var(--font-secondary);
+  line-height: var(--line-height-medium);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-medium);
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  font-family: var(--font-primary);
+}
+
+h4 {
+  font-family: var(--font-secondary);
+}
+
+/* Custom Class */
+.cl-primary {
+  color: var(--color-primary);
+}
+
+.cl-secondary {
+  color: var(--color-secondary);
+}
+
+.bg-red {
+  background-color: var(--color-red-strong);
+}
+
+.bg-primary {
+  background-color: var(--color-primary);
+}
+
+.bg-secondary {
+  background-color: var(--color-secondary);
+}
+
+.bs-light {
+  box-shadow: var(--box-shadow-light);
+}
+
+.bs-dark {
+  box-shadow: var(--box-shadow-dark);
+}
+
+.inputRegister {
+  width: 100%;
+  margin-block: auto;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  background-color: #e0e0e0;
+  border: solid 4px #858585;
+  border-radius: 0.5rem;
+  padding-inline-start: 0.5rem;
+  padding: 0.5rem;
+}
+::placeholder {
+  color: #100f0fb5 !important;
+  font-weight: 600 !important;
 }

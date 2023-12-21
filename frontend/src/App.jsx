@@ -1,10 +1,13 @@
+import {RouterProvider} from 'react-router-dom'
+import {router} from './routes/index'
 
-function App() {
+
+const App = () => {
   return (
     <>
-      <h1>S12-04-T-Node-React</h1>
+    <RouterProvider router={router} />
     </>
-  );
+  )
 }
 
-export default App;
+export default App
